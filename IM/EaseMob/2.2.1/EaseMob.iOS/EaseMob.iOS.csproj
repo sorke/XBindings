@@ -166,5 +166,8 @@
   <ItemGroup>
     <ObjcBindingNativeLibrary Include="libEaseMobClientSDKLite.a" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="sharpie.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>
