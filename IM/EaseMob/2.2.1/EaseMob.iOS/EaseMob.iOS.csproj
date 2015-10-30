@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{32FBA605-89FF-4A6E-B723-C9106F8B446E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>XBindings.EaseMob</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>XBindings.EaseMob.iOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="libEaseMobClientSDKLite.linkwith.cs">
+      <DependentUpon>libEaseMobClientSDKLite.a</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\com.easemob.config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\com.vip1.config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\in.caf" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\SDKConfig.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\Base.lproj\EMInternationalization.strings" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\easemob.momd\easemob.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\easemob.momd\easemob2_0_3.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\easemob.momd\easemob2_0_5.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\easemob.momd\easemob2_0_6.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\easemob.momd\easemob2_0_7.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\easemob.momd\easemob2_0_7plus.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\easemob.momd\easemob2_0_8.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\easemob.momd\easemob2_0_9.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\easemob.momd\easemob2_1_1.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\easemob.momd\easemob2_1_1.omo" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\easemob.momd\VersionInfo.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\en.lproj\EMInternationalization.strings" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPCapabilities.momd\VersionInfo.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPCapabilities.momd\XMPPCapabilities 2.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPCapabilities.momd\XMPPCapabilities 2.omo" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPCapabilities.momd\XMPPCapabilities.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPMessageArchiving.momd\VersionInfo.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPMessageArchiving.momd\XMPPMessageArchiving.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPMessageArchiving.momd\XMPPMessageArchiving.omo" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPRoom.momd\VersionInfo.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPRoom.momd\XMPPRoom.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPRoom.momd\XMPPRoom.omo" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPRoomHybrid.momd\VersionInfo.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPRoomHybrid.momd\XMPPRoomHybrid.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPRoomHybrid.momd\XMPPRoomHybrid.omo" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPRoster.momd\VersionInfo.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPRoster.momd\XMPPRoster 2.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPRoster.momd\XMPPRoster 2.omo" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPRoster.momd\XMPPRoster.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPvCard.momd\VersionInfo.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPvCard.momd\XMPPvCard.mom" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\XMPPvCard.momd\XMPPvCard.omo" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="EaseMob.bundle\zh-Hans.lproj\EMInternationalization.strings" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingNativeLibrary Include="libEaseMobClientSDKLite.a" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+</Project>
