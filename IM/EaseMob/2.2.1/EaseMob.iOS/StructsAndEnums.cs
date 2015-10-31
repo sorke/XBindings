@@ -296,14 +296,14 @@ namespace XBindings.EaseMob
         Hangup,
         Reject,
         Busy,
-        Failure,
-        Null = Null,
-        Offline = Offline,
-        NoResponse = NoResponse,
-        Hangup = Hangup,
-        Reject = Reject,
-        Busy = Busy,
-        Failure = Failure
+        Failure//,
+//        Null = Null,
+//        Offline = Offline,
+//        NoResponse = NoResponse,
+//        Hangup = Hangup,
+//        Reject = Reject,
+//        Busy = Busy,
+//        Failure = Failure
     }
 
     [Native]

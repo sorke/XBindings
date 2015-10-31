@@ -10,57 +10,58 @@ using UIKit;
 namespace XBindings.EaseMob
 {
     // @protocol IChatManagerBase <NSObject>
-    [Protocol, Model]
+    [Protocol]
     [BaseType(typeof(NSObject))]
     interface IChatManagerBase
     {
         // @required -(void)addDelegate:(id<EMChatManagerDelegate>)delegate delegateQueue:(dispatch_queue_t)queue;
-        [Abstract]
+        //[Abstract]
         [Export("addDelegate:delegateQueue:")]
-        void AddDelegate(EMChatManagerDelegate @delegate, DispatchQueue queue);
+        void AddDelegate(EMChatManagerDelegate @delegate1, DispatchQueue queue);
 
         // @required -(void)removeDelegate:(id<EMChatManagerDelegate>)delegate;
-        [Abstract]
+        //[Abstract]
         [Export("removeDelegate:")]
-        void RemoveDelegate(EMChatManagerDelegate @delegate);
+        void RemoveDelegate(EMChatManagerDelegate @delegate1);
     }
 
     // @protocol IChatManagerChat <IChatManagerBase>
-    [Protocol, Model]
-    interface IChatManagerChat : IIChatManagerBase
+    [Protocol]
+	[BaseType(typeof(IChatManagerBase))]
+    interface IChatManagerChat //: IChatManagerBase
     {
         // @required -(EMMessage *)sendMessage:(EMMessage *)message progress:(id<IEMChatProgressDelegate>)progress error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("sendMessage:progress:error:")]
         EMMessage SendMessage(EMMessage message, IEMChatProgressDelegate progress, out EMError pError);
 
         // @required -(EMMessage *)asyncSendMessage:(EMMessage *)message progress:(id<IEMChatProgressDelegate>)progress;
-        [Abstract]
+        //[Abstract]
         [Export("asyncSendMessage:progress:")]
         EMMessage AsyncSendMessage(EMMessage message, IEMChatProgressDelegate progress);
 
         // @required -(EMMessage *)asyncSendMessage:(EMMessage *)message progress:(id<IEMChatProgressDelegate>)progress prepare:(void (^)(EMMessage *, EMError *))prepare onQueue:(dispatch_queue_t)aPrepareQueue completion:(void (^)(EMMessage *, EMError *))completion onQueue:(dispatch_queue_t)aCompletionQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncSendMessage:progress:prepare:onQueue:completion:onQueue:")]
         EMMessage AsyncSendMessage(EMMessage message, IEMChatProgressDelegate progress, Action<EMMessage, EMError> prepare, DispatchQueue aPrepareQueue, Action<EMMessage, EMError> completion, DispatchQueue aCompletionQueue);
 
         // @required -(void)sendReadAckForMessage:(EMMessage *)message;
-        [Abstract]
+        //[Abstract]
         [Export("sendReadAckForMessage:")]
         void SendReadAckForMessage(EMMessage message);
 
         // @required -(EMMessage *)resendMessage:(EMMessage *)message progress:(id<IEMChatProgressDelegate>)progress error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("resendMessage:progress:error:")]
         EMMessage ResendMessage(EMMessage message, IEMChatProgressDelegate progress, out EMError pError);
 
         // @required -(EMMessage *)asyncResendMessage:(EMMessage *)message progress:(id<IEMChatProgressDelegate>)progress;
-        [Abstract]
+        //[Abstract]
         [Export("asyncResendMessage:progress:")]
         EMMessage AsyncResendMessage(EMMessage message, IEMChatProgressDelegate progress);
 
         // @required -(EMMessage *)asyncResendMessage:(EMMessage *)message progress:(id<IEMChatProgressDelegate>)progress prepare:(void (^)(EMMessage *, EMError *))prepare onQueue:(dispatch_queue_t)aPrepareQueue completion:(void (^)(EMMessage *, EMError *))completion onQueue:(dispatch_queue_t)aCompletionQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncResendMessage:progress:prepare:onQueue:completion:onQueue:")]
         EMMessage AsyncResendMessage(EMMessage message, IEMChatProgressDelegate progress, Action<EMMessage, EMError> prepare, DispatchQueue aPrepareQueue, Action<EMMessage, EMError> completion, DispatchQueue aCompletionQueue);
 
@@ -94,38 +95,38 @@ namespace XBindings.EaseMob
     }
 
     // @protocol IEMChatCryptor <NSObject>
-    [Protocol, Model]
+    [Protocol]
     [BaseType(typeof(NSObject))]
     interface IEMChatCryptor
     {
         // @required -(NSData *)encryptData:(NSData *)data args:(id)aArgs;
-        [Abstract]
+        //[Abstract]
         [Export("encryptData:args:")]
         NSData EncryptData(NSData data, NSObject aArgs);
 
         // @required -(NSData *)decryptData:(NSData *)data args:(id)aArgs;
-        [Abstract]
+        //[Abstract]
         [Export("decryptData:args:")]
         NSData DecryptData(NSData data, NSObject aArgs);
     }
 
     // @protocol IChatManagerEncryption <IChatManagerBase>
-    [Protocol, Model]
-    interface IChatManagerEncryption : IIChatManagerBase
+    [Protocol]
+    interface IChatManagerEncryption : IChatManagerBase
     {
         // @required @property (nonatomic, strong) id<IEMChatCryptor> chatCryptor;
-        [Abstract]
+        //[Abstract]
         [Export("chatCryptor", ArgumentSemantic.Strong)]
         IEMChatCryptor ChatCryptor { get; set; }
     }
 
     // @protocol IChatManagerConversation <IChatManagerBase>
-    [Protocol, Model]
-    interface IChatManagerConversation : IIChatManagerBase
+    [Protocol]
+    interface IChatManagerConversation : IChatManagerBase
     {
         // @optional @property (readonly, nonatomic) NSArray * conversations;
         [Export("conversations")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] Conversations { get; }
 
         // @optional -(EMConversation *)conversationForChatter:(NSString *)chatter conversationType:(EMConversationType)type;
@@ -134,7 +135,7 @@ namespace XBindings.EaseMob
 
         // @optional -(NSArray *)loadAllConversationsFromDatabaseWithAppend2Chat:(BOOL)append2Chat;
         [Export("loadAllConversationsFromDatabaseWithAppend2Chat:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] LoadAllConversationsFromDatabaseWithAppend2Chat(bool append2Chat);
 
         // @optional -(BOOL)insertConversationToDB:(EMConversation *)conversation append2Chat:(BOOL)append2Chat;
@@ -143,7 +144,7 @@ namespace XBindings.EaseMob
 
         // @optional -(NSInteger)insertConversationsToDB:(NSArray *)conversations append2Chat:(BOOL)append2Chat;
         [Export("insertConversationsToDB:append2Chat:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         nint InsertConversationsToDB(NSObject[] conversations, bool append2Chat);
 
         // @optional -(BOOL)removeConversationByChatter:(NSString *)chatter deleteMessages:(BOOL)aDeleteMessages append2Chat:(BOOL)append2Chat;
@@ -152,7 +153,7 @@ namespace XBindings.EaseMob
 
         // @optional -(NSUInteger)removeConversationsByChatters:(NSArray *)chatters deleteMessages:(BOOL)aDeleteMessages append2Chat:(BOOL)append2Chat;
         [Export("removeConversationsByChatters:deleteMessages:append2Chat:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         nuint RemoveConversationsByChatters(NSObject[] chatters, bool aDeleteMessages, bool append2Chat);
 
         // @optional -(BOOL)removeAllConversationsWithDeleteMessages:(BOOL)aDeleteMessages append2Chat:(BOOL)append2Chat;
@@ -161,7 +162,7 @@ namespace XBindings.EaseMob
 
         // @optional -(NSUInteger)loadTotalUnreadMessagesCountFromDatabase;
         [Export("loadTotalUnreadMessagesCountFromDatabase")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         nuint LoadTotalUnreadMessagesCountFromDatabase { get; }
 
         // @optional -(NSUInteger)unreadMessagesCountForConversation:(NSString *)chatter;
@@ -170,12 +171,12 @@ namespace XBindings.EaseMob
 
         // @optional -(NSArray *)searchMessagesWithCriteria:(NSString *)criteria;
         [Export("searchMessagesWithCriteria:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] SearchMessagesWithCriteria(string criteria);
 
         // @optional -(NSArray *)searchMessagesWithCriteria:(NSString *)criteria withChatter:(NSString *)chatter;
         [Export("searchMessagesWithCriteria:withChatter:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] SearchMessagesWithCriteria(string criteria, string chatter);
 
         // @optional -(BOOL)insertMessageToDB:(EMMessage *)message;
@@ -188,12 +189,12 @@ namespace XBindings.EaseMob
 
         // @optional -(NSInteger)insertMessagesToDB:(NSArray *)messages;
         [Export("insertMessagesToDB:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         nint InsertMessagesToDB(NSObject[] messages);
 
         // @optional -(BOOL)insertMessagesToDB:(NSArray *)messages forChatter:(NSString *)chatter append2Chat:(BOOL)append2Chat;
         [Export("insertMessagesToDB:forChatter:append2Chat:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         bool InsertMessagesToDB(NSObject[] messages, string chatter, bool append2Chat);
 
         // @optional -(EMConversation *)conversationForChatter:(NSString *)chatter isGroup:(BOOL)isGroup __attribute__((deprecated("")));
@@ -202,17 +203,17 @@ namespace XBindings.EaseMob
 
         // @optional -(NSArray *)loadAllConversations __attribute__((deprecated("")));
         [Export("loadAllConversations")]
-        [Verify(MethodToProperty), Verify(StronglyTypedNSArray)]
+         //[Verify(MethodToProperty), Verify(StronglyTypedNSArray)]
         NSObject[] LoadAllConversations { get; }
 
         // @optional -(NSArray *)loadAllConversationsFromDatabase __attribute__((deprecated("")));
         [Export("loadAllConversationsFromDatabase")]
-        [Verify(MethodToProperty), Verify(StronglyTypedNSArray)]
+         //[Verify(MethodToProperty), Verify(StronglyTypedNSArray)]
         NSObject[] LoadAllConversationsFromDatabase { get; }
 
         // @optional -(NSInteger)saveAllConversations __attribute__((deprecated("")));
         [Export("saveAllConversations")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         nint SaveAllConversations { get; }
 
         // @optional -(BOOL)removeConversationByChatter:(NSString *)chatter deleteMessages:(BOOL)aDeleteMessages __attribute__((deprecated("")));
@@ -221,7 +222,7 @@ namespace XBindings.EaseMob
 
         // @optional -(NSUInteger)removeConversationsByChatters:(NSArray *)chatters deleteMessages:(BOOL)aDeleteMessages __attribute__((deprecated("")));
         [Export("removeConversationsByChatters:deleteMessages:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         nuint RemoveConversationsByChatters(NSObject[] chatters, bool aDeleteMessages);
 
         // @optional -(BOOL)removeAllConversationsWithDeleteMessages:(BOOL)aDeleteMessages __attribute__((deprecated("")));
@@ -230,12 +231,12 @@ namespace XBindings.EaseMob
 
         // @optional -(NSUInteger)unreadConversationsCount __attribute__((deprecated("")));
         [Export("unreadConversationsCount")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         nuint UnreadConversationsCount { get; }
 
         // @optional -(NSUInteger)totalUnreadMessagesCount __attribute__((deprecated("")));
         [Export("totalUnreadMessagesCount")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         nuint TotalUnreadMessagesCount { get; }
 
         // @optional -(BOOL)saveMessage:(EMMessage *)message __attribute__((deprecated("")));
@@ -248,48 +249,48 @@ namespace XBindings.EaseMob
 
         // @optional -(NSInteger)saveMessages:(NSArray *)messages __attribute__((deprecated("")));
         [Export("saveMessages:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         nint SaveMessages(NSObject[] messages);
     }
 
     // @protocol IChatManagerUtil <IChatManagerBase>
-    [Protocol, Model]
-    interface IChatManagerUtil : IIChatManagerBase
+    [Protocol]
+    interface IChatManagerUtil : IChatManagerBase
     {
         // @required -(EMMessage *)fetchMessage:(EMMessage *)aMessage progress:(id<IEMChatProgressDelegate>)progress error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("fetchMessage:progress:error:")]
         EMMessage FetchMessage(EMMessage aMessage, IEMChatProgressDelegate progress, out EMError pError);
 
         // @required -(void)asyncFetchMessage:(EMMessage *)aMessage progress:(id<IEMChatProgressDelegate>)progress;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchMessage:progress:")]
         void AsyncFetchMessage(EMMessage aMessage, IEMChatProgressDelegate progress);
 
         // @required -(void)asyncFetchMessage:(EMMessage *)aMessage progress:(id<IEMChatProgressDelegate>)progress completion:(void (^)(EMMessage *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchMessage:progress:completion:onQueue:")]
         void AsyncFetchMessage(EMMessage aMessage, IEMChatProgressDelegate progress, Action<EMMessage, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMMessage *)fetchMessageThumbnail:(EMMessage *)aMessage progress:(id<IEMChatProgressDelegate>)progress error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("fetchMessageThumbnail:progress:error:")]
         EMMessage FetchMessageThumbnail(EMMessage aMessage, IEMChatProgressDelegate progress, out EMError pError);
 
         // @required -(void)asyncFetchMessageThumbnail:(EMMessage *)aMessage progress:(id<IEMChatProgressDelegate>)progress;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchMessageThumbnail:progress:")]
         void AsyncFetchMessageThumbnail(EMMessage aMessage, IEMChatProgressDelegate progress);
 
         // @required -(void)asyncFetchMessageThumbnail:(EMMessage *)aMessage progress:(id<IEMChatProgressDelegate>)progress completion:(void (^)(EMMessage *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchMessageThumbnail:progress:completion:onQueue:")]
         void AsyncFetchMessageThumbnail(EMMessage aMessage, IEMChatProgressDelegate progress, Action<EMMessage, EMError> completion, DispatchQueue aQueue);
     }
 
     // @protocol IChatManagerLogin <IChatManagerBase>
-    [Protocol, Model]
-    interface IChatManagerLogin : IIChatManagerBase
+    [Protocol]
+    interface IChatManagerLogin : IChatManagerBase
     {
         // @required @property (readonly, nonatomic, strong) NSDictionary * loginInfo;
         [Export("loginInfo", ArgumentSemantic.Strong)]
@@ -304,59 +305,59 @@ namespace XBindings.EaseMob
         bool IsConnected { get; }
 
         // @required -(EMError *)importDataToNewDatabase;
-        [Abstract]
+        //[Abstract]
         [Export("importDataToNewDatabase")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         EMError ImportDataToNewDatabase { get; }
 
         // @required -(EMError *)loadDataFromDatabase;
-        [Abstract]
+        //[Abstract]
         [Export("loadDataFromDatabase")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         EMError LoadDataFromDatabase { get; }
 
         // @required -(BOOL)registerNewAccount:(NSString *)username password:(NSString *)password error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("registerNewAccount:password:error:")]
         bool RegisterNewAccount(string username, string password, out EMError pError);
 
         // @required -(void)asyncRegisterNewAccount:(NSString *)username password:(NSString *)password;
-        [Abstract]
+        //[Abstract]
         [Export("asyncRegisterNewAccount:password:")]
         void AsyncRegisterNewAccount(string username, string password);
 
         // @required -(void)asyncRegisterNewAccount:(NSString *)username password:(NSString *)password withCompletion:(void (^)(NSString *, NSString *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncRegisterNewAccount:password:withCompletion:onQueue:")]
         void AsyncRegisterNewAccount(string username, string password, Action<NSString, NSString, EMError> completion, DispatchQueue aQueue);
 
         // @required -(NSDictionary *)loginWithUsername:(NSString *)username password:(NSString *)password error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("loginWithUsername:password:error:")]
         NSDictionary LoginWithUsername(string username, string password, out EMError pError);
 
         // @required -(void)asyncLoginWithUsername:(NSString *)username password:(NSString *)password;
-        [Abstract]
+        //[Abstract]
         [Export("asyncLoginWithUsername:password:")]
         void AsyncLoginWithUsername(string username, string password);
 
         // @required -(void)asyncLoginWithUsername:(NSString *)username password:(NSString *)password completion:(void (^)(NSDictionary *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncLoginWithUsername:password:completion:onQueue:")]
         void AsyncLoginWithUsername(string username, string password, Action<NSDictionary, EMError> completion, DispatchQueue aQueue);
 
         // @required -(NSDictionary *)logoffWithUnbindDeviceToken:(BOOL)isUnbind error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("logoffWithUnbindDeviceToken:error:")]
         NSDictionary LogoffWithUnbindDeviceToken(bool isUnbind, out EMError pError);
 
         // @required -(void)asyncLogoffWithUnbindDeviceToken:(BOOL)isUnbind;
-        [Abstract]
+        //[Abstract]
         [Export("asyncLogoffWithUnbindDeviceToken:")]
         void AsyncLogoffWithUnbindDeviceToken(bool isUnbind);
 
         // @required -(void)asyncLogoffWithUnbindDeviceToken:(BOOL)isUnbind completion:(void (^)(NSDictionary *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncLogoffWithUnbindDeviceToken:completion:onQueue:")]
         void AsyncLogoffWithUnbindDeviceToken(bool isUnbind, Action<NSDictionary, EMError> completion, DispatchQueue aQueue);
 
@@ -374,113 +375,113 @@ namespace XBindings.EaseMob
     }
 
     // @protocol IChatManagerBuddy <IChatManagerBase>
-    [Protocol, Model]
-    interface IChatManagerBuddy : IIChatManagerBase
+    [Protocol]
+    interface IChatManagerBuddy : IChatManagerBase
     {
         // @required @property (readonly, nonatomic, strong) NSArray * buddyList;
-        [Abstract]
+        //[Abstract]
         [Export("buddyList", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] BuddyList { get; }
 
         // @required @property (readonly, nonatomic, strong) NSArray * blockedList;
-        [Abstract]
+        //[Abstract]
         [Export("blockedList", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] BlockedList { get; }
 
         // @required -(NSArray *)fetchBuddyListWithError:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("fetchBuddyListWithError:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] FetchBuddyListWithError(out EMError pError);
 
         // @required -(void *)asyncFetchBuddyList;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchBuddyList")]
-        [Verify(MethodToProperty)]
-        unsafe void* AsyncFetchBuddyList { get; }
+         //[Verify(MethodToProperty)]
+		unsafe NSObject[] AsyncFetchBuddyList { get; }
 
         // @required -(void *)asyncFetchBuddyListWithCompletion:(void (^)(NSArray *, EMError *))completion onQueue:(dispatch_queue_t)queue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchBuddyListWithCompletion:onQueue:")]
-        unsafe void* AsyncFetchBuddyListWithCompletion(Action<NSArray, EMError> completion, DispatchQueue queue);
+		unsafe NSObject[] AsyncFetchBuddyListWithCompletion(Action<NSArray, EMError> completion, DispatchQueue queue);
 
         // @required -(BOOL)addBuddy:(NSString *)username message:(NSString *)message error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("addBuddy:message:error:")]
         bool AddBuddy(string username, string message, out EMError pError);
 
         // @required -(BOOL)addBuddy:(NSString *)username message:(NSString *)message toGroups:(NSArray *)groupNames error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("addBuddy:message:toGroups:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         bool AddBuddy(string username, string message, NSObject[] groupNames, out EMError pError);
 
         // @required -(BOOL)removeBuddy:(NSString *)username removeFromRemote:(BOOL)removeFromRemote error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("removeBuddy:removeFromRemote:error:")]
         bool RemoveBuddy(string username, bool removeFromRemote, out EMError pError);
 
         // @required -(BOOL)acceptBuddyRequest:(NSString *)username error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("acceptBuddyRequest:error:")]
         bool AcceptBuddyRequest(string username, out EMError pError);
 
         // @required -(BOOL)rejectBuddyRequest:(NSString *)username reason:(NSString *)reason error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("rejectBuddyRequest:reason:error:")]
         bool RejectBuddyRequest(string username, string reason, out EMError pError);
 
         // @required -(NSArray *)fetchBlockedList:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("fetchBlockedList:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] FetchBlockedList(out EMError pError);
 
         // @required -(void)asyncFetchBlockedList;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchBlockedList")]
         void AsyncFetchBlockedList();
 
         // @required -(void)asyncFetchBlockedListWithCompletion:(void (^)(NSArray *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchBlockedListWithCompletion:onQueue:")]
         void AsyncFetchBlockedListWithCompletion(Action<NSArray, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMError *)blockBuddy:(NSString *)username relationship:(EMRelationship)relationship;
-        [Abstract]
+        //[Abstract]
         [Export("blockBuddy:relationship:")]
         EMError BlockBuddy(string username, EMRelationship relationship);
 
         // @required -(void)asyncBlockBuddy:(NSString *)username relationship:(EMRelationship)relationship;
-        [Abstract]
+        //[Abstract]
         [Export("asyncBlockBuddy:relationship:")]
         void AsyncBlockBuddy(string username, EMRelationship relationship);
 
         // @required -(void)asyncBlockBuddy:(NSString *)username relationship:(EMRelationship)relationship withCompletion:(void (^)(NSString *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncBlockBuddy:relationship:withCompletion:onQueue:")]
         void AsyncBlockBuddy(string username, EMRelationship relationship, Action<NSString, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMError *)unblockBuddy:(NSString *)username;
-        [Abstract]
+        //[Abstract]
         [Export("unblockBuddy:")]
         EMError UnblockBuddy(string username);
 
         // @required -(void)asyncUnblockBuddy:(NSString *)username;
-        [Abstract]
+        //[Abstract]
         [Export("asyncUnblockBuddy:")]
         void AsyncUnblockBuddy(string username);
 
         // @required -(void)asyncUnblockBuddy:(NSString *)username withCompletion:(void (^)(NSString *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncUnblockBuddy:withCompletion:onQueue:")]
         void AsyncUnblockBuddy(string username, Action<NSString, EMError> completion, DispatchQueue aQueue);
 
         // @optional @property (readonly, nonatomic, strong) NSArray * buddyGroupList __attribute__((deprecated("")));
         [Export("buddyGroupList", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] BuddyGroupList { get; }
 
         // @optional -(BOOL)addBuddy:(NSString *)username withNickname:(NSString *)nickname message:(NSString *)message error:(EMError **)pError __attribute__((deprecated("")));
@@ -489,7 +490,7 @@ namespace XBindings.EaseMob
 
         // @optional -(BOOL)addBuddy:(NSString *)username withNickname:(NSString *)nickname message:(NSString *)message toGroups:(NSArray *)groupNames error:(EMError **)pError __attribute__((deprecated("")));
         [Export("addBuddy:withNickname:message:toGroups:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         bool AddBuddy(string username, string nickname, string message, NSObject[] groupNames, out EMError pError);
 
         // @optional -(void)asyncFetchBlockListWithCompletion:(void (^)(NSArray *, EMError *))completion onQueue:(dispatch_queue_t)aQueue __attribute__((deprecated("")));
@@ -498,418 +499,418 @@ namespace XBindings.EaseMob
     }
 
     // @protocol IChatManagerGroup <IChatManagerBase>
-    [Protocol, Model]
-    interface IChatManagerGroup : IIChatManagerBase
+    [Protocol]
+    interface IChatManagerGroup : IChatManagerBase
     {
         // @required @property (readonly, nonatomic, strong) NSArray * groupList;
-        [Abstract]
+        //[Abstract]
         [Export("groupList", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] GroupList { get; }
 
         // @required -(NSArray *)loadAllMyGroupsFromDatabaseWithAppend2Chat:(BOOL)append2Chat;
-        [Abstract]
+        //[Abstract]
         [Export("loadAllMyGroupsFromDatabaseWithAppend2Chat:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] LoadAllMyGroupsFromDatabaseWithAppend2Chat(bool append2Chat);
 
         // @required -(EMGroup *)createGroupWithSubject:(NSString *)subject description:(NSString *)description invitees:(NSArray *)invitees initialWelcomeMessage:(NSString *)welcomeMessage styleSetting:(EMGroupStyleSetting *)styleSetting error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("createGroupWithSubject:description:invitees:initialWelcomeMessage:styleSetting:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         EMGroup CreateGroupWithSubject(string subject, string description, NSObject[] invitees, string welcomeMessage, EMGroupStyleSetting styleSetting, out EMError pError);
 
         // @required -(void)asyncCreateGroupWithSubject:(NSString *)subject description:(NSString *)description invitees:(NSArray *)invitees initialWelcomeMessage:(NSString *)welcomeMessage styleSetting:(EMGroupStyleSetting *)styleSetting;
-        [Abstract]
+        //[Abstract]
         [Export("asyncCreateGroupWithSubject:description:invitees:initialWelcomeMessage:styleSetting:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncCreateGroupWithSubject(string subject, string description, NSObject[] invitees, string welcomeMessage, EMGroupStyleSetting styleSetting);
 
         // @required -(void)asyncCreateGroupWithSubject:(NSString *)subject description:(NSString *)description invitees:(NSArray *)invitees initialWelcomeMessage:(NSString *)welcomeMessage styleSetting:(EMGroupStyleSetting *)styleSetting completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncCreateGroupWithSubject:description:invitees:initialWelcomeMessage:styleSetting:completion:onQueue:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncCreateGroupWithSubject(string subject, string description, NSObject[] invitees, string welcomeMessage, EMGroupStyleSetting styleSetting, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)createAnonymousGroupWithSubject:(NSString *)subject description:(NSString *)description initialWelcomeMessage:(NSString *)welcomeMessage nickname:(NSString *)nickname styleSetting:(EMGroupStyleSetting *)styleSetting error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("createAnonymousGroupWithSubject:description:initialWelcomeMessage:nickname:styleSetting:error:")]
         EMGroup CreateAnonymousGroupWithSubject(string subject, string description, string welcomeMessage, string nickname, EMGroupStyleSetting styleSetting, out EMError pError);
 
         // @required -(void)asyncCreateAnonymousGroupWithSubject:(NSString *)subject description:(NSString *)description initialWelcomeMessage:(NSString *)welcomeMessage nickname:(NSString *)nickname styleSetting:(EMGroupStyleSetting *)styleSetting;
-        [Abstract]
+        //[Abstract]
         [Export("asyncCreateAnonymousGroupWithSubject:description:initialWelcomeMessage:nickname:styleSetting:")]
         void AsyncCreateAnonymousGroupWithSubject(string subject, string description, string welcomeMessage, string nickname, EMGroupStyleSetting styleSetting);
 
         // @required -(void)asyncCreateAnonymousGroupWithSubject:(NSString *)subject description:(NSString *)description initialWelcomeMessage:(NSString *)welcomeMessage nickname:(NSString *)nickname styleSetting:(EMGroupStyleSetting *)styleSetting completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncCreateAnonymousGroupWithSubject:description:initialWelcomeMessage:nickname:styleSetting:completion:onQueue:")]
         void AsyncCreateAnonymousGroupWithSubject(string subject, string description, string welcomeMessage, string nickname, EMGroupStyleSetting styleSetting, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)joinAnonymousPublicGroup:(NSString *)groupId nickname:(NSString *)nickname error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("joinAnonymousPublicGroup:nickname:error:")]
         EMGroup JoinAnonymousPublicGroup(string groupId, string nickname, out EMError pError);
 
         // @required -(void)asyncJoinAnonymousPublicGroup:(NSString *)groupId nickname:(NSString *)nickname;
-        [Abstract]
+        //[Abstract]
         [Export("asyncJoinAnonymousPublicGroup:nickname:")]
         void AsyncJoinAnonymousPublicGroup(string groupId, string nickname);
 
         // @required -(void)asyncJoinAnonymousPublicGroup:(NSString *)groupId nickname:(NSString *)nickname completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncJoinAnonymousPublicGroup:nickname:completion:onQueue:")]
         void AsyncJoinAnonymousPublicGroup(string groupId, string nickname, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)leaveGroup:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("leaveGroup:error:")]
         EMGroup LeaveGroup(string groupId, out EMError pError);
 
         // @required -(void)asyncLeaveGroup:(NSString *)groupId;
-        [Abstract]
+        //[Abstract]
         [Export("asyncLeaveGroup:")]
         void AsyncLeaveGroup(string groupId);
 
         // @required -(void)asyncLeaveGroup:(NSString *)groupId completion:(void (^)(EMGroup *, EMGroupLeaveReason, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncLeaveGroup:completion:onQueue:")]
         void AsyncLeaveGroup(string groupId, Action<EMGroup, EMGroupLeaveReason, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)destroyGroup:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("destroyGroup:error:")]
         EMGroup DestroyGroup(string groupId, out EMError pError);
 
         // @required -(void)asyncDestroyGroup:(NSString *)groupId;
-        [Abstract]
+        //[Abstract]
         [Export("asyncDestroyGroup:")]
         void AsyncDestroyGroup(string groupId);
 
         // @required -(void)asyncDestroyGroup:(NSString *)groupId completion:(void (^)(EMGroup *, EMGroupLeaveReason, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncDestroyGroup:completion:onQueue:")]
         void AsyncDestroyGroup(string groupId, Action<EMGroup, EMGroupLeaveReason, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)addOccupants:(NSArray *)occupants toGroup:(NSString *)groupId welcomeMessage:(NSString *)welcomeMessage error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("addOccupants:toGroup:welcomeMessage:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         EMGroup AddOccupants(NSObject[] occupants, string groupId, string welcomeMessage, out EMError pError);
 
         // @required -(void)asyncAddOccupants:(NSArray *)occupants toGroup:(NSString *)groupId welcomeMessage:(NSString *)welcomeMessage;
-        [Abstract]
+        //[Abstract]
         [Export("asyncAddOccupants:toGroup:welcomeMessage:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncAddOccupants(NSObject[] occupants, string groupId, string welcomeMessage);
 
         // @required -(void)asyncAddOccupants:(NSArray *)occupants toGroup:(NSString *)groupId welcomeMessage:(NSString *)welcomeMessage completion:(void (^)(NSArray *, EMGroup *, NSString *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncAddOccupants:toGroup:welcomeMessage:completion:onQueue:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncAddOccupants(NSObject[] occupants, string groupId, string welcomeMessage, Action<NSArray, EMGroup, NSString, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)removeOccupants:(NSArray *)occupants fromGroup:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("removeOccupants:fromGroup:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         EMGroup RemoveOccupants(NSObject[] occupants, string groupId, out EMError pError);
 
         // @required -(void)asyncRemoveOccupants:(NSArray *)occupants fromGroup:(NSString *)groupId;
-        [Abstract]
+        //[Abstract]
         [Export("asyncRemoveOccupants:fromGroup:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncRemoveOccupants(NSObject[] occupants, string groupId);
 
         // @required -(void)asyncRemoveOccupants:(NSArray *)occupants fromGroup:(NSString *)groupId completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncRemoveOccupants:fromGroup:completion:onQueue:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncRemoveOccupants(NSObject[] occupants, string groupId, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)blockOccupants:(NSArray *)occupants fromGroup:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("blockOccupants:fromGroup:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         EMGroup BlockOccupants(NSObject[] occupants, string groupId, out EMError pError);
 
         // @required -(void)asyncBlockOccupants:(NSArray *)occupants fromGroup:(NSString *)groupId;
-        [Abstract]
+        //[Abstract]
         [Export("asyncBlockOccupants:fromGroup:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncBlockOccupants(NSObject[] occupants, string groupId);
 
         // @required -(void)asyncBlockOccupants:(NSArray *)occupants fromGroup:(NSString *)groupId completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncBlockOccupants:fromGroup:completion:onQueue:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncBlockOccupants(NSObject[] occupants, string groupId, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)unblockOccupants:(NSArray *)occupants forGroup:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("unblockOccupants:forGroup:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         EMGroup UnblockOccupants(NSObject[] occupants, string groupId, out EMError pError);
 
         // @required -(void)asyncUnblockOccupants:(NSArray *)occupants forGroup:(NSString *)groupId;
-        [Abstract]
+        //[Abstract]
         [Export("asyncUnblockOccupants:forGroup:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncUnblockOccupants(NSObject[] occupants, string groupId);
 
         // @required -(void)asyncUnblockOccupants:(NSArray *)occupants forGroup:(NSString *)groupId completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncUnblockOccupants:forGroup:completion:onQueue:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncUnblockOccupants(NSObject[] occupants, string groupId, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)changeGroupSubject:(NSString *)subject forGroup:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("changeGroupSubject:forGroup:error:")]
         EMGroup ChangeGroupSubject(string subject, string groupId, out EMError pError);
 
         // @required -(void)asyncChangeGroupSubject:(NSString *)subject forGroup:(NSString *)groupId;
-        [Abstract]
+        //[Abstract]
         [Export("asyncChangeGroupSubject:forGroup:")]
         void AsyncChangeGroupSubject(string subject, string groupId);
 
         // @required -(void)asyncChangeGroupSubject:(NSString *)subject forGroup:(NSString *)groupId completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncChangeGroupSubject:forGroup:completion:onQueue:")]
         void AsyncChangeGroupSubject(string subject, string groupId, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)changeDescription:(NSString *)newDescription forGroup:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("changeDescription:forGroup:error:")]
         EMGroup ChangeDescription(string newDescription, string groupId, out EMError pError);
 
         // @required -(void)asyncChangeDescription:(NSString *)newDescription forGroup:(NSString *)groupId;
-        [Abstract]
+        //[Abstract]
         [Export("asyncChangeDescription:forGroup:")]
         void AsyncChangeDescription(string newDescription, string groupId);
 
         // @required -(void)asyncChangeDescription:(NSString *)newDescription forGroup:(NSString *)groupId completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncChangeDescription:forGroup:completion:onQueue:")]
         void AsyncChangeDescription(string newDescription, string groupId, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(void)acceptApplyJoinGroup:(NSString *)groupId groupname:(NSString *)groupname applicant:(NSString *)username error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("acceptApplyJoinGroup:groupname:applicant:error:")]
         void AcceptApplyJoinGroup(string groupId, string groupname, string username, out EMError pError);
 
         // @required -(void)asyncAcceptApplyJoinGroup:(NSString *)groupId groupname:(NSString *)groupname applicant:(NSString *)username;
-        [Abstract]
+        //[Abstract]
         [Export("asyncAcceptApplyJoinGroup:groupname:applicant:")]
         void AsyncAcceptApplyJoinGroup(string groupId, string groupname, string username);
 
         // @required -(void)asyncAcceptApplyJoinGroup:(NSString *)groupId groupname:(NSString *)groupname applicant:(NSString *)username completion:(void (^)(EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncAcceptApplyJoinGroup:groupname:applicant:completion:onQueue:")]
         void AsyncAcceptApplyJoinGroup(string groupId, string groupname, string username, Action<EMError> completion, DispatchQueue aQueue);
 
         // @required -(void)rejectApplyJoinGroup:(NSString *)groupId groupname:(NSString *)groupname toApplicant:(NSString *)username reason:(NSString *)reason;
-        [Abstract]
+        //[Abstract]
         [Export("rejectApplyJoinGroup:groupname:toApplicant:reason:")]
         void RejectApplyJoinGroup(string groupId, string groupname, string username, string reason);
 
         // @required -(EMGroup *)fetchGroupInfo:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("fetchGroupInfo:error:")]
         EMGroup FetchGroupInfo(string groupId, out EMError pError);
 
         // @required -(void)asyncFetchGroupInfo:(NSString *)groupId;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchGroupInfo:")]
         void AsyncFetchGroupInfo(string groupId);
 
         // @required -(void)asyncFetchGroupInfo:(NSString *)groupId completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchGroupInfo:completion:onQueue:")]
         void AsyncFetchGroupInfo(string groupId, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(NSArray *)fetchOccupantList:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("fetchOccupantList:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] FetchOccupantList(string groupId, out EMError pError);
 
         // @required -(void)asyncFetchOccupantList:(NSString *)groupId;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchOccupantList:")]
         void AsyncFetchOccupantList(string groupId);
 
         // @required -(void)asyncFetchOccupantList:(NSString *)groupId completion:(void (^)(NSArray *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchOccupantList:completion:onQueue:")]
         void AsyncFetchOccupantList(string groupId, Action<NSArray, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)fetchGroupInfo:(NSString *)groupId includesOccupantList:(BOOL)includesOccupantList error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("fetchGroupInfo:includesOccupantList:error:")]
         EMGroup FetchGroupInfo(string groupId, bool includesOccupantList, out EMError pError);
 
         // @required -(void)asyncFetchGroupInfo:(NSString *)groupId includesOccupantList:(BOOL)includesOccupantList;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchGroupInfo:includesOccupantList:")]
         void AsyncFetchGroupInfo(string groupId, bool includesOccupantList);
 
         // @required -(void)asyncFetchGroupInfo:(NSString *)groupId includesOccupantList:(BOOL)includesOccupantList completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchGroupInfo:includesOccupantList:completion:onQueue:")]
         void AsyncFetchGroupInfo(string groupId, bool includesOccupantList, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(NSArray *)fetchGroupBansList:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("fetchGroupBansList:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] FetchGroupBansList(string groupId, out EMError pError);
 
         // @required -(void)asyncFetchGroupBansList:(NSString *)groupId;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchGroupBansList:")]
         void AsyncFetchGroupBansList(string groupId);
 
         // @required -(void)asyncFetchGroupBansList:(NSString *)groupId completion:(void (^)(NSArray *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchGroupBansList:completion:onQueue:")]
         void AsyncFetchGroupBansList(string groupId, Action<NSArray, EMError> completion, DispatchQueue aQueue);
 
         // @required -(NSArray *)fetchMyGroupsListWithError:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("fetchMyGroupsListWithError:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] FetchMyGroupsListWithError(out EMError pError);
 
         // @required -(void)asyncFetchMyGroupsList;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchMyGroupsList")]
         void AsyncFetchMyGroupsList();
 
         // @required -(void)asyncFetchMyGroupsListWithCompletion:(void (^)(NSArray *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchMyGroupsListWithCompletion:onQueue:")]
         void AsyncFetchMyGroupsListWithCompletion(Action<NSArray, EMError> completion, DispatchQueue aQueue);
 
         // @required -(NSArray *)fetchAllPublicGroupsWithError:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("fetchAllPublicGroupsWithError:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] FetchAllPublicGroupsWithError(out EMError pError);
 
         // @required -(void)asyncFetchAllPublicGroups;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchAllPublicGroups")]
         void AsyncFetchAllPublicGroups();
 
         // @required -(void)asyncFetchAllPublicGroupsWithCompletion:(void (^)(NSArray *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchAllPublicGroupsWithCompletion:onQueue:")]
         void AsyncFetchAllPublicGroupsWithCompletion(Action<NSArray, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMCursorResult *)fetchPublicGroupsFromServerWithCursor:(NSString *)cursor pageSize:(NSInteger)pageSize andError:(EMError **)pError;
-        [Abstract]
-        [Export("fetchPublicGroupsFromServerWithCursor:pageSize:andError:")]
-        EMCursorResult FetchPublicGroupsFromServerWithCursor(string cursor, nint pageSize, out EMError pError);
+        //[Abstract]
+        ///[Export("fetchPublicGroupsFromServerWithCursor:pageSize:andError:")]
+        //EMCursorResult FetchPublicGroupsFromServerWithCursor(string cursor, nint pageSize, out EMError pError);
 
         // @required -(void)asyncFetchPublicGroupsFromServerWithCursor:(NSString *)cursor pageSize:(NSInteger)pageSize andCompletion:(void (^)(EMCursorResult *, EMError *))completion;
-        [Abstract]
-        [Export("asyncFetchPublicGroupsFromServerWithCursor:pageSize:andCompletion:")]
-        void AsyncFetchPublicGroupsFromServerWithCursor(string cursor, nint pageSize, Action<EMCursorResult, EMError> completion);
+        //[Abstract]
+        //[Export("asyncFetchPublicGroupsFromServerWithCursor:pageSize:andCompletion:")]
+        //void AsyncFetchPublicGroupsFromServerWithCursor(string cursor, nint pageSize, Action<EMCursorResult, EMError> completion);
 
         // @required -(EMGroup *)joinPublicGroup:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("joinPublicGroup:error:")]
         EMGroup JoinPublicGroup(string groupId, out EMError pError);
 
         // @required -(void)asyncJoinPublicGroup:(NSString *)groupId;
-        [Abstract]
+        //[Abstract]
         [Export("asyncJoinPublicGroup:")]
         void AsyncJoinPublicGroup(string groupId);
 
         // @required -(void)asyncJoinPublicGroup:(NSString *)groupId completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncJoinPublicGroup:completion:onQueue:")]
         void AsyncJoinPublicGroup(string groupId, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)applyJoinPublicGroup:(NSString *)groupId withGroupname:(NSString *)groupName message:(NSString *)message error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("applyJoinPublicGroup:withGroupname:message:error:")]
         EMGroup ApplyJoinPublicGroup(string groupId, string groupName, string message, out EMError pError);
 
         // @required -(void)asyncApplyJoinPublicGroup:(NSString *)groupId withGroupname:(NSString *)groupName message:(NSString *)message;
-        [Abstract]
+        //[Abstract]
         [Export("asyncApplyJoinPublicGroup:withGroupname:message:")]
         void AsyncApplyJoinPublicGroup(string groupId, string groupName, string message);
 
         // @required -(void)asyncApplyJoinPublicGroup:(NSString *)groupId withGroupname:(NSString *)groupName message:(NSString *)message completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncApplyJoinPublicGroup:withGroupname:message:completion:onQueue:")]
         void AsyncApplyJoinPublicGroup(string groupId, string groupName, string message, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)searchPublicGroupWithGroupId:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("searchPublicGroupWithGroupId:error:")]
         EMGroup SearchPublicGroupWithGroupId(string groupId, out EMError pError);
 
         // @required -(void)asyncSearchPublicGroupWithGroupId:(NSString *)groupId completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncSearchPublicGroupWithGroupId:completion:onQueue:")]
         void AsyncSearchPublicGroupWithGroupId(string groupId, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)blockGroup:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("blockGroup:error:")]
         EMGroup BlockGroup(string groupId, out EMError pError);
 
         // @required -(void)asyncBlockGroup:(NSString *)groupId completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncBlockGroup:completion:onQueue:")]
         void AsyncBlockGroup(string groupId, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @required -(EMGroup *)unblockGroup:(NSString *)groupId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("unblockGroup:error:")]
         EMGroup UnblockGroup(string groupId, out EMError pError);
 
         // @required -(void)asyncUnblockGroup:(NSString *)groupId completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncUnblockGroup:completion:onQueue:")]
         void AsyncUnblockGroup(string groupId, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @optional -(NSArray *)loadAllMyGroupsFromDatabase __attribute__((deprecated("")));
         [Export("loadAllMyGroupsFromDatabase")]
-        [Verify(MethodToProperty), Verify(StronglyTypedNSArray)]
+         //[Verify(MethodToProperty), Verify(StronglyTypedNSArray)]
         NSObject[] LoadAllMyGroupsFromDatabase { get; }
 
         // @optional -(EMGroup *)createPrivateGroupWithSubject:(NSString *)subject description:(NSString *)description invitees:(NSArray *)invitees initialWelcomeMessage:(NSString *)welcomeMessage error:(EMError **)pError __attribute__((deprecated("")));
         [Export("createPrivateGroupWithSubject:description:invitees:initialWelcomeMessage:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         EMGroup CreatePrivateGroupWithSubject(string subject, string description, NSObject[] invitees, string welcomeMessage, out EMError pError);
 
         // @optional -(void)asyncCreatePrivateGroupWithSubject:(NSString *)subject description:(NSString *)description invitees:(NSArray *)invitees initialWelcomeMessage:(NSString *)welcomeMessage __attribute__((deprecated("")));
         [Export("asyncCreatePrivateGroupWithSubject:description:invitees:initialWelcomeMessage:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncCreatePrivateGroupWithSubject(string subject, string description, NSObject[] invitees, string welcomeMessage);
 
         // @optional -(void)asyncCreatePrivateGroupWithSubject:(NSString *)subject description:(NSString *)description invitees:(NSArray *)invitees initialWelcomeMessage:(NSString *)welcomeMessage completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue __attribute__((deprecated("")));
         [Export("asyncCreatePrivateGroupWithSubject:description:invitees:initialWelcomeMessage:completion:onQueue:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncCreatePrivateGroupWithSubject(string subject, string description, NSObject[] invitees, string welcomeMessage, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @optional -(EMGroup *)createPublicGroupWithSubject:(NSString *)subject description:(NSString *)description invitees:(NSArray *)invitees initialWelcomeMessage:(NSString *)welcomeMessage error:(EMError **)pError __attribute__((deprecated("")));
         [Export("createPublicGroupWithSubject:description:invitees:initialWelcomeMessage:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         EMGroup CreatePublicGroupWithSubject(string subject, string description, NSObject[] invitees, string welcomeMessage, out EMError pError);
 
         // @optional -(void)asyncCreatePublicGroupWithSubject:(NSString *)subject description:(NSString *)description invitees:(NSArray *)invitees initialWelcomeMessage:(NSString *)welcomeMessage __attribute__((deprecated("")));
         [Export("asyncCreatePublicGroupWithSubject:description:invitees:initialWelcomeMessage:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncCreatePublicGroupWithSubject(string subject, string description, NSObject[] invitees, string welcomeMessage);
 
         // @optional -(void)asyncCreatePublicGroupWithSubject:(NSString *)subject description:(NSString *)description invitees:(NSArray *)invitees initialWelcomeMessage:(NSString *)welcomeMessage completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue __attribute__((deprecated("")));
         [Export("asyncCreatePublicGroupWithSubject:description:invitees:initialWelcomeMessage:completion:onQueue:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncCreatePublicGroupWithSubject(string subject, string description, NSObject[] invitees, string welcomeMessage, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @optional -(EMGroup *)changePassword:(NSString *)newPassword forGroup:(NSString *)groupId error:(EMError **)pError __attribute__((deprecated("")));
@@ -926,22 +927,22 @@ namespace XBindings.EaseMob
 
         // @optional -(EMGroup *)changeAffiliation:(EMGroupMemberRole)newAffiliation forOccupants:(NSArray *)occupants inGroup:(NSString *)groupId error:(EMError **)pError __attribute__((deprecated("")));
         [Export("changeAffiliation:forOccupants:inGroup:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         EMGroup ChangeAffiliation(EMGroupMemberRole newAffiliation, NSObject[] occupants, string groupId, out EMError pError);
 
         // @optional -(void)asyncChangeAffiliation:(EMGroupMemberRole)newAffiliation forOccupants:(NSArray *)occupants inGroup:(NSString *)groupId __attribute__((deprecated("")));
         [Export("asyncChangeAffiliation:forOccupants:inGroup:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncChangeAffiliation(EMGroupMemberRole newAffiliation, NSObject[] occupants, string groupId);
 
         // @optional -(void)asyncChangeAffiliation:(EMGroupMemberRole)newAffiliation forOccupants:(NSArray *)occupants inGroup:(NSString *)groupId completion:(void (^)(EMGroup *, EMError *))completion onQueue:(dispatch_queue_t)aQueue __attribute__((deprecated("")));
         [Export("asyncChangeAffiliation:forOccupants:inGroup:completion:onQueue:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AsyncChangeAffiliation(EMGroupMemberRole newAffiliation, NSObject[] occupants, string groupId, Action<EMGroup, EMError> completion, DispatchQueue aQueue);
 
         // @optional -(NSArray *)fetchAllPrivateGroupsWithError:(EMError **)pError __attribute__((deprecated("")));
         [Export("fetchAllPrivateGroupsWithError:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] FetchAllPrivateGroupsWithError(out EMError pError);
 
         // @optional -(void)asyncFetchAllPrivateGroups __attribute__((deprecated("")));
@@ -970,8 +971,8 @@ namespace XBindings.EaseMob
     }
 
     // @protocol IChatManagerSettingOptions <IChatManagerBase>
-    [Protocol, Model]
-    interface IChatManagerSettingOptions : IIChatManagerBase
+    [Protocol]
+    interface IChatManagerSettingOptions : IChatManagerBase
     {
         // @optional @property (nonatomic, strong) NSString * apnsNickname;
         [Export("apnsNickname", ArgumentSemantic.Strong)]
@@ -1043,54 +1044,54 @@ namespace XBindings.EaseMob
     }
 
     // @protocol IChatManagerPushNotification <IChatManagerBase>
-    [Protocol, Model]
-    interface IChatManagerPushNotification : IIChatManagerBase
+    [Protocol]
+    interface IChatManagerPushNotification : IChatManagerBase
     {
         // @required @property (readonly, nonatomic, strong) EMPushNotificationOptions * pushNotificationOptions;
-        [Abstract]
+        //[Abstract]
         [Export("pushNotificationOptions", ArgumentSemantic.Strong)]
         EMPushNotificationOptions PushNotificationOptions { get; }
 
         // @required @property (readonly, nonatomic, strong) NSArray * ignoredGroupIds;
-        [Abstract]
+        //[Abstract]
         [Export("ignoredGroupIds", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] IgnoredGroupIds { get; }
 
         // @required -(EMPushNotificationOptions *)updatePushOptions:(EMPushNotificationOptions *)options error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("updatePushOptions:error:")]
         EMPushNotificationOptions UpdatePushOptions(EMPushNotificationOptions options, out EMError pError);
 
         // @required -(void)asyncUpdatePushOptions:(EMPushNotificationOptions *)options;
-        [Abstract]
+        //[Abstract]
         [Export("asyncUpdatePushOptions:")]
         void AsyncUpdatePushOptions(EMPushNotificationOptions options);
 
         // @required -(void)asyncUpdatePushOptions:(EMPushNotificationOptions *)options completion:(void (^)(EMPushNotificationOptions *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncUpdatePushOptions:completion:onQueue:")]
         void AsyncUpdatePushOptions(EMPushNotificationOptions options, Action<EMPushNotificationOptions, EMError> completion, DispatchQueue aQueue);
 
         // @required -(NSArray *)ignoreGroupPushNotification:(NSString *)groupId ignore:(BOOL)ignore error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("ignoreGroupPushNotification:ignore:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] IgnoreGroupPushNotification(string groupId, bool ignore, out EMError pError);
 
         // @required -(void)asyncIgnoreGroupPushNotification:(NSString *)groupId isIgnore:(BOOL)isIgnore;
-        [Abstract]
+        //[Abstract]
         [Export("asyncIgnoreGroupPushNotification:isIgnore:")]
         void AsyncIgnoreGroupPushNotification(string groupId, bool isIgnore);
 
         // @required -(void)asyncIgnoreGroupPushNotification:(NSString *)groupId isIgnore:(BOOL)isIgnore completion:(void (^)(NSArray *, EMError *))completion onQueue:(dispatch_queue_t)aQueue;
-        [Abstract]
+        //[Abstract]
         [Export("asyncIgnoreGroupPushNotification:isIgnore:completion:onQueue:")]
         void AsyncIgnoreGroupPushNotification(string groupId, bool isIgnore, Action<NSArray, EMError> completion, DispatchQueue aQueue);
 
         // @optional @property (readonly, nonatomic, strong) NSArray * ignoredGroupList __attribute__((deprecated("")));
         [Export("ignoredGroupList", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] IgnoredGroupList { get; }
     }
 
@@ -1121,90 +1122,92 @@ namespace XBindings.EaseMob
     }
 
     // @protocol IChatManagerChatroom <IChatManagerBase>
-    [Protocol, Model]
-    interface IChatManagerChatroom : IIChatManagerBase
+    [Protocol]
+    interface IChatManagerChatroom : IChatManagerBase
     {
         // @required -(EMCursorResult *)fetchChatroomsFromServerWithCursor:(NSString *)cursor pageSize:(NSInteger)pageSize andError:(EMError **)pError;
-        [Abstract]
-        [Export("fetchChatroomsFromServerWithCursor:pageSize:andError:")]
-        EMCursorResult FetchChatroomsFromServerWithCursor(string cursor, nint pageSize, out EMError pError);
+        //[Abstract]
+        //[Export("fetchChatroomsFromServerWithCursor:pageSize:andError:")]
+        //EMCursorResult FetchChatroomsFromServerWithCursor(string cursor, nint pageSize, out EMError pError);
 
         // @required -(void)asyncFetchChatroomsFromServerWithCursor:(NSString *)cursor pageSize:(NSInteger)pageSize andCompletion:(void (^)(EMCursorResult *, EMError *))completion;
-        [Abstract]
-        [Export("asyncFetchChatroomsFromServerWithCursor:pageSize:andCompletion:")]
-        void AsyncFetchChatroomsFromServerWithCursor(string cursor, nint pageSize, Action<EMCursorResult, EMError> completion);
+        //[Abstract]
+        //[Export("asyncFetchChatroomsFromServerWithCursor:pageSize:andCompletion:")]
+       // void AsyncFetchChatroomsFromServerWithCursor(string cursor, nint pageSize, Action<EMCursorResult, EMError> completion);
 
         // @required -(EMChatroom *)fetchChatroomInfo:(NSString *)chatroomId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("fetchChatroomInfo:error:")]
         EMChatroom FetchChatroomInfo(string chatroomId, out EMError pError);
 
         // @required -(void)asyncFetchChatroomInfo:(NSString *)chatroomId completion:(void (^)(EMChatroom *, EMError *))completion;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchChatroomInfo:completion:")]
         void AsyncFetchChatroomInfo(string chatroomId, Action<EMChatroom, EMError> completion);
 
         // @required -(EMCursorResult *)fetchOccupantsForChatroom:(NSString *)chatroomId cursor:(NSString *)cursor pageSize:(NSInteger)pageSize andError:(EMError **)pError;
-        [Abstract]
-        [Export("fetchOccupantsForChatroom:cursor:pageSize:andError:")]
-        EMCursorResult FetchOccupantsForChatroom(string chatroomId, string cursor, nint pageSize, out EMError pError);
+        //[Abstract]
+        //[Export("fetchOccupantsForChatroom:cursor:pageSize:andError:")]
+        //EMCursorResult FetchOccupantsForChatroom(string chatroomId, string cursor, nint pageSize, out EMError pError);
 
         // @required -(void)asyncFetchOccupantsForChatroom:(NSString *)chatroomId cursor:(NSString *)cursor pageSize:(NSInteger)pageSize completion:(void (^)(EMCursorResult *, EMError *))completion;
-        [Abstract]
-        [Export("asyncFetchOccupantsForChatroom:cursor:pageSize:completion:")]
-        void AsyncFetchOccupantsForChatroom(string chatroomId, string cursor, nint pageSize, Action<EMCursorResult, EMError> completion);
+        //[Abstract]
+       // [Export("asyncFetchOccupantsForChatroom:cursor:pageSize:completion:")]
+       // void AsyncFetchOccupantsForChatroom(string chatroomId, string cursor, nint pageSize, Action<EMCursorResult, EMError> completion);
 
         // @required -(EMChatroom *)joinChatroom:(NSString *)chatroomId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("joinChatroom:error:")]
         EMChatroom JoinChatroom(string chatroomId, out EMError pError);
 
         // @required -(void)asyncJoinChatroom:(NSString *)chatroomId completion:(void (^)(EMChatroom *, EMError *))completion;
-        [Abstract]
+        //[Abstract]
         [Export("asyncJoinChatroom:completion:")]
         void AsyncJoinChatroom(string chatroomId, Action<EMChatroom, EMError> completion);
 
         // @required -(EMChatroom *)leaveChatroom:(NSString *)chatroomId error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("leaveChatroom:error:")]
         EMChatroom LeaveChatroom(string chatroomId, out EMError pError);
 
         // @required -(void)asyncLeaveChatroom:(NSString *)chatroomId completion:(void (^)(EMChatroom *, EMError *))completion;
-        [Abstract]
+        //[Abstract]
         [Export("asyncLeaveChatroom:completion:")]
         void AsyncLeaveChatroom(string chatroomId, Action<EMChatroom, EMError> completion);
     }
 
     // @protocol IChatManagerRobot <IChatManagerBase>
-    [Protocol, Model]
-    interface IChatManagerRobot : IIChatManagerBase
+    [Protocol]
+    interface IChatManagerRobot : IChatManagerBase
     {
         // @required @property (readonly, nonatomic, strong) NSArray * robotList;
-        [Abstract]
+        //[Abstract]
         [Export("robotList", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] RobotList { get; }
 
         // @required -(NSArray *)fetchRobotsFromServerWithError:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("fetchRobotsFromServerWithError:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] FetchRobotsFromServerWithError(out EMError pError);
 
         // @required -(void)asyncFetchRobotsFromServerWithCompletion:(void (^)(NSArray *, EMError *))completion;
-        [Abstract]
+        //[Abstract]
         [Export("asyncFetchRobotsFromServerWithCompletion:")]
         void AsyncFetchRobotsFromServerWithCompletion(Action<NSArray, EMError> completion);
     }
 
     // @protocol IChatManager <IChatManagerChat, IChatManagerLogin, IChatManagerConversation, IChatManagerEncryption, IChatManagerUtil, IChatManagerGroup, IChatManagerBuddy, IChatManagerSettingOptions, IChatManagerPushNotification, IChatManagerChatroom, IChatManagerRobot>
-    [Protocol, Model]
-    interface IChatManager : IIChatManagerChat, IIChatManagerLogin, IIChatManagerConversation, IIChatManagerEncryption, IIChatManagerUtil, IIChatManagerGroup, IIChatManagerBuddy, IIChatManagerSettingOptions, IIChatManagerPushNotification, IIChatManagerChatroom, IIChatManagerRobot
+    [Protocol]
+	[BaseType(typeof(IChatManagerChat))]
+    interface IChatManager : IChatManagerLogin, IChatManagerConversation, IChatManagerEncryption, IChatManagerUtil, IChatManagerGroup, IChatManagerBuddy, IChatManagerSettingOptions, IChatManagerPushNotification, IChatManagerChatroom, IChatManagerRobot
     {
     }
 
     // @protocol IDeviceManager
-    [Protocol, Model]
+    [Protocol]
+	[BaseType(typeof(NSObject))]
     interface IDeviceManager
     {
     }
@@ -1218,7 +1221,8 @@ namespace XBindings.EaseMob
 
     // @protocol EMChatManagerChatDelegate <EMChatManagerDelegateBase>
     [Protocol, Model]
-    interface EMChatManagerChatDelegate : IEMChatManagerDelegateBase
+	[BaseType(typeof(NSObject))]
+    interface EMChatManagerChatDelegate : EMChatManagerDelegateBase
     {
         // @optional -(void)willSendMessage:(EMMessage *)message error:(EMError *)error;
         [Export("willSendMessage:error:")]
@@ -1258,7 +1262,7 @@ namespace XBindings.EaseMob
 
         // @optional -(void)didUpdateConversationList:(NSArray *)conversationList;
         [Export("didUpdateConversationList:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DidUpdateConversationList(NSObject[] conversationList);
 
         // @optional -(void)didUnreadMessagesCountChanged;
@@ -1271,12 +1275,12 @@ namespace XBindings.EaseMob
 
         // @optional -(void)didReceiveOfflineMessages:(NSArray *)offlineMessages;
         [Export("didReceiveOfflineMessages:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DidReceiveOfflineMessages(NSObject[] offlineMessages);
 
         // @optional -(void)didReceiveOfflineCmdMessages:(NSArray *)offlineCmdMessages;
         [Export("didReceiveOfflineCmdMessages:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DidReceiveOfflineCmdMessages(NSObject[] offlineCmdMessages);
 
         // @optional -(void)didFinishedReceiveOfflineMessages;
@@ -1289,24 +1293,24 @@ namespace XBindings.EaseMob
 
         // @optional -(void)didFinishedReceiveOfflineCmdMessages:(NSArray *)offlineCmdMessages __attribute__((deprecated("")));
         [Export("didFinishedReceiveOfflineCmdMessages:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DidFinishedReceiveOfflineCmdMessages(NSObject[] offlineCmdMessages);
 
         // @optional -(void)didFinishedReceiveOfflineMessages:(NSArray *)offlineMessages __attribute__((deprecated("")));
         [Export("didFinishedReceiveOfflineMessages:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DidFinishedReceiveOfflineMessages(NSObject[] offlineMessages);
     }
 
     // @protocol EMChatManagerEncryptionDelegate <EMChatManagerDelegateBase>
     [Protocol, Model]
-    interface EMChatManagerEncryptionDelegate : IEMChatManagerDelegateBase
+    interface EMChatManagerEncryptionDelegate : EMChatManagerDelegateBase
     {
     }
 
     // @protocol EMChatManagerLoginDelegate <EMChatManagerDelegateBase>
     [Protocol, Model]
-    interface EMChatManagerLoginDelegate : IEMChatManagerDelegateBase
+    interface EMChatManagerLoginDelegate : EMChatManagerDelegateBase
     {
         // @optional -(void)willAutoLoginWithInfo:(NSDictionary *)loginInfo error:(EMError *)error;
         [Export("willAutoLoginWithInfo:error:")]
@@ -1359,7 +1363,7 @@ namespace XBindings.EaseMob
 
     // @protocol EMChatManagerBuddyDelegate <EMChatManagerDelegateBase>
     [Protocol, Model]
-    interface EMChatManagerBuddyDelegate : IEMChatManagerDelegateBase
+    interface EMChatManagerBuddyDelegate : EMChatManagerDelegateBase
     {
         // @optional -(void)didReceiveBuddyRequest:(NSString *)username message:(NSString *)message;
         [Export("didReceiveBuddyRequest:message:")]
@@ -1383,17 +1387,17 @@ namespace XBindings.EaseMob
 
         // @optional -(void)didUpdateBuddyList:(NSArray *)buddyList changedBuddies:(NSArray *)changedBuddies isAdd:(BOOL)isAdd;
         [Export("didUpdateBuddyList:changedBuddies:isAdd:")]
-        [Verify(StronglyTypedNSArray), Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray), Verify(StronglyTypedNSArray)]
         void DidUpdateBuddyList(NSObject[] buddyList, NSObject[] changedBuddies, bool isAdd);
 
         // @optional -(void)didUpdateBuddyGroupList:(NSArray *)buddyGroupList __attribute__((deprecated("")));
         [Export("didUpdateBuddyGroupList:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DidUpdateBuddyGroupList(NSObject[] buddyGroupList);
 
         // @optional -(void)didFetchedBuddyList:(NSArray *)buddyList error:(EMError *)error;
         [Export("didFetchedBuddyList:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DidFetchedBuddyList(NSObject[] buddyList, EMError error);
 
         // @optional -(void)didChangedOnlineStatus:(BOOL)isOnline forBuddy:(NSString *)username __attribute__((deprecated("")));
@@ -1402,7 +1406,7 @@ namespace XBindings.EaseMob
 
         // @optional -(void)didUpdateBlockedList:(NSArray *)blockedList;
         [Export("didUpdateBlockedList:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DidUpdateBlockedList(NSObject[] blockedList);
 
         // @optional -(void)didBlockBuddy:(NSString *)username error:(EMError *)pError;
@@ -1416,7 +1420,7 @@ namespace XBindings.EaseMob
 
     // @protocol EMChatManagerUtilDelegate <EMChatManagerDelegateBase>
     [Protocol, Model]
-    interface EMChatManagerUtilDelegate : IEMChatManagerDelegateBase
+    interface EMChatManagerUtilDelegate : EMChatManagerDelegateBase
     {
         // @optional -(void)didFetchMessage:(EMMessage *)aMessage error:(EMError *)error;
         [Export("didFetchMessage:error:")]
@@ -1433,7 +1437,7 @@ namespace XBindings.EaseMob
 
     // @protocol EMChatManagerGroupDelegate <EMChatManagerDelegateBase>
     [Protocol, Model]
-    interface EMChatManagerGroupDelegate : IEMChatManagerDelegateBase
+    interface EMChatManagerGroupDelegate : EMChatManagerDelegateBase
     {
         // @optional -(void)group:(EMGroup *)group didCreateWithError:(EMError *)error;
         [Export("group:didCreateWithError:")]
@@ -1501,12 +1505,12 @@ namespace XBindings.EaseMob
 
         // @optional -(void)didUpdateGroupList:(NSArray *)groupList error:(EMError *)error;
         [Export("didUpdateGroupList:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DidUpdateGroupList(NSObject[] groupList, EMError error);
 
         // @optional -(void)didFetchAllPublicGroups:(NSArray *)groups error:(EMError *)error;
         [Export("didFetchAllPublicGroups:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DidFetchAllPublicGroups(NSObject[] groups, EMError error);
 
         // @optional -(void)didFetchGroupInfo:(EMGroup *)group error:(EMError *)error;
@@ -1515,12 +1519,12 @@ namespace XBindings.EaseMob
 
         // @optional -(void)didFetchGroupOccupantsList:(NSArray *)occupantsList error:(EMError *)error;
         [Export("didFetchGroupOccupantsList:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DidFetchGroupOccupantsList(NSObject[] occupantsList, EMError error);
 
         // @optional -(void)didFetchGroupBans:(NSString *)groupId list:(NSArray *)bansList error:(EMError *)error;
         [Export("didFetchGroupBans:list:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DidFetchGroupBans(string groupId, NSObject[] bansList, EMError error);
 
         // @optional -(void)didJoinPublicGroup:(EMGroup *)group error:(EMError *)error;
@@ -1538,7 +1542,7 @@ namespace XBindings.EaseMob
 
     // @protocol EMChatManagerPushNotificationDelegate <EMChatManagerDelegateBase>
     [Protocol, Model]
-    interface EMChatManagerPushNotificationDelegate : IEMChatManagerDelegateBase
+    interface EMChatManagerPushNotificationDelegate : EMChatManagerDelegateBase
     {
         // @optional -(void)didUpdatePushOptions:(EMPushNotificationOptions *)options error:(EMError *)error;
         [Export("didUpdatePushOptions:error:")]
@@ -1546,21 +1550,21 @@ namespace XBindings.EaseMob
 
         // @optional -(void)didIgnoreGroupPushNotification:(NSArray *)ignoredGroupList error:(EMError *)error;
         [Export("didIgnoreGroupPushNotification:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DidIgnoreGroupPushNotification(NSObject[] ignoredGroupList, EMError error);
     }
 
     // @protocol EMChatManagerChatroomDelegate <EMChatManagerDelegateBase>
     [Protocol, Model]
-    interface EMChatManagerChatroomDelegate : IEMChatManagerDelegateBase
+    interface EMChatManagerChatroomDelegate : EMChatManagerDelegateBase
     {
         // @optional -(void)chatroom:(EMChatroom *)chatroom occupantDidJoin:(NSString *)username;
         [Export("chatroom:occupantDidJoin:")]
-        void Chatroom(EMChatroom chatroom, string username);
+        void DidJoinChatroom(EMChatroom chatroom, string username);
 
         // @optional -(void)chatroom:(EMChatroom *)chatroom occupantDidLeave:(NSString *)username;
         [Export("chatroom:occupantDidLeave:")]
-        void Chatroom(EMChatroom chatroom, string username);
+        void DidLeaveChatroom(EMChatroom chatroom, string username);
 
         // @optional -(void)beKickedOutFromChatroom:(EMChatroom *)chatroom reason:(EMChatroomBeKickedReason)reason;
         [Export("beKickedOutFromChatroom:reason:")]
@@ -1573,13 +1577,14 @@ namespace XBindings.EaseMob
 
     // @protocol EMChatManagerDelegate <EMChatManagerChatDelegate, EMChatManagerLoginDelegate, EMChatManagerEncryptionDelegate, EMChatManagerBuddyDelegate, EMChatManagerUtilDelegate, EMChatManagerGroupDelegate, EMChatManagerPushNotificationDelegate, EMChatManagerChatroomDelegate>
     [Protocol, Model]
-    interface EMChatManagerDelegate : IEMChatManagerChatDelegate, IEMChatManagerLoginDelegate, IEMChatManagerEncryptionDelegate, IEMChatManagerBuddyDelegate, IEMChatManagerUtilDelegate, IEMChatManagerGroupDelegate, IEMChatManagerPushNotificationDelegate, IEMChatManagerChatroomDelegate
+	[BaseType(typeof(EMChatManagerChatDelegate))]
+    interface EMChatManagerDelegate :  EMChatManagerLoginDelegate, EMChatManagerEncryptionDelegate, EMChatManagerBuddyDelegate, EMChatManagerUtilDelegate, EMChatManagerGroupDelegate, EMChatManagerPushNotificationDelegate, EMChatManagerChatroomDelegate
     {
     }
 
     // @protocol IChatManagerDelegate <EMChatManagerDelegate>
     [Protocol, Model]
-    interface IChatManagerDelegate : IEMChatManagerDelegate
+    interface IChatManagerDelegate : EMChatManagerDelegate
     {
     }
 
@@ -1595,13 +1600,13 @@ namespace XBindings.EaseMob
 
     // @protocol EMDeviceManagerDelegate <EMDeviceManagerNetworkDelegate>
     [Protocol, Model]
-    interface EMDeviceManagerDelegate : IEMDeviceManagerNetworkDelegate
+    interface EMDeviceManagerDelegate : EMDeviceManagerNetworkDelegate
     {
     }
 
     // @protocol IDeviceManagerDelegate <EMDeviceManagerDelegate>
     [Protocol, Model]
-    interface IDeviceManagerDelegate : IEMDeviceManagerDelegate
+    interface IDeviceManagerDelegate : EMDeviceManagerDelegate
     {
     }
 
@@ -1655,7 +1660,7 @@ namespace XBindings.EaseMob
 
         // @property (nonatomic, strong) NSArray * messageBodies;
         [Export("messageBodies", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] MessageBodies { get; set; }
 
         // @property (nonatomic, strong) NSString * conversationChatter;
@@ -1696,73 +1701,73 @@ namespace XBindings.EaseMob
 
         // -(id)initWithReceiver:(NSString *)receiver bodies:(NSArray *)bodies;
         [Export("initWithReceiver:bodies:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         IntPtr Constructor(string receiver, NSObject[] bodies);
 
         // -(id)initMessageWithID:(NSString *)messageId sender:(NSString *)sender receiver:(NSString *)receiver bodies:(NSArray *)bodies;
         [Export("initMessageWithID:sender:receiver:bodies:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         IntPtr Constructor(string messageId, string sender, string receiver, NSObject[] bodies);
 
         // -(NSArray *)addMessageBody:(id<IEMMessageBody>)body;
         [Export("addMessageBody:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] AddMessageBody(IEMMessageBody body);
 
         // -(NSArray *)removeMessageBody:(id<IEMMessageBody>)body;
         [Export("removeMessageBody:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] RemoveMessageBody(IEMMessageBody body);
 
         // -(BOOL)updateMessageDeliveryStateToDB;
         [Export("updateMessageDeliveryStateToDB")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         bool UpdateMessageDeliveryStateToDB { get; }
 
         // -(BOOL)updateMessageExtToDB;
         [Export("updateMessageExtToDB")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         bool UpdateMessageExtToDB { get; }
 
         // -(BOOL)updateMessageBodiesToDB;
         [Export("updateMessageBodiesToDB")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         bool UpdateMessageBodiesToDB { get; }
 
         // -(BOOL)updateMessageStatusFailedToDB;
         [Export("updateMessageStatusFailedToDB")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         bool UpdateMessageStatusFailedToDB { get; }
     }
 
     // @protocol IEMMessageBody <NSObject>
-    [Protocol, Model]
+    [Protocol]
     [BaseType(typeof(NSObject))]
     interface IEMMessageBody
     {
         // @required @property (readonly, nonatomic) MessageBodyType messageBodyType;
-        [Abstract]
+        //[Abstract]
         [Export("messageBodyType")]
         MessageBodyType MessageBodyType { get; }
 
         // @required @property (readonly, nonatomic, strong) id<IEMChatObject> chatObject;
-        [Abstract]
+        //[Abstract]
         [Export("chatObject", ArgumentSemantic.Strong)]
         IEMChatObject ChatObject { get; }
 
         // @required @property (nonatomic, weak) EMMessage * _Nullable message;
-        [Abstract]
+        //[Abstract]
         [NullAllowed, Export("message", ArgumentSemantic.Weak)]
         EMMessage Message { get; set; }
 
         // @required -(id)initWithChatObject:(id<IEMChatObject>)aChatObject;
-        [Abstract]
+        //[Abstract]
         [Export("initWithChatObject:")]
         IntPtr Constructor(IEMChatObject aChatObject);
     }
 
     [Static]
-    [Verify(ConstantsInterfaceAssociation)]
+    //[Verify(ConstantsInterfaceAssociation)]
     partial interface Constants
     {
         // extern NSString *const EMMessageBodyAttrKeyType;
@@ -1839,48 +1844,48 @@ namespace XBindings.EaseMob
     }
 
     // @protocol IEMFileMessageBody <IEMMessageBody>
-    [Protocol, Model]
-    interface IEMFileMessageBody : IIEMMessageBody
+    [Protocol]
+    interface IEMFileMessageBody : IEMMessageBody
     {
         // @required @property (nonatomic, strong) NSString * uuid;
-        [Abstract]
+        //[Abstract]
         [Export("uuid", ArgumentSemantic.Strong)]
         string Uuid { get; set; }
 
         // @required @property (nonatomic, strong) NSString * displayName;
-        [Abstract]
+        //[Abstract]
         [Export("displayName", ArgumentSemantic.Strong)]
         string DisplayName { get; set; }
 
         // @required @property (nonatomic, strong) NSString * localPath;
-        [Abstract]
+        //[Abstract]
         [Export("localPath", ArgumentSemantic.Strong)]
         string LocalPath { get; set; }
 
         // @required @property (nonatomic, strong) NSString * remotePath;
-        [Abstract]
+        //[Abstract]
         [Export("remotePath", ArgumentSemantic.Strong)]
         string RemotePath { get; set; }
 
         // @required @property (nonatomic, strong) NSString * secretKey;
-        [Abstract]
+        //[Abstract]
         [Export("secretKey", ArgumentSemantic.Strong)]
         string SecretKey { get; set; }
 
         // @required @property (nonatomic) EMAttachmentDownloadStatus attachmentDownloadStatus;
-        [Abstract]
+        //[Abstract]
         [Export("attachmentDownloadStatus", ArgumentSemantic.Assign)]
         EMAttachmentDownloadStatus AttachmentDownloadStatus { get; set; }
 
         // @required @property (nonatomic) long long fileLength;
-        [Abstract]
+        //[Abstract]
         [Export("fileLength")]
         long FileLength { get; set; }
     }
 
     // @interface EMVideoMessageBody : NSObject <IEMFileMessageBody>
     [BaseType(typeof(NSObject))]
-    interface EMVideoMessageBody : IIEMFileMessageBody
+    interface EMVideoMessageBody : IEMFileMessageBody
     {
         // @property (readonly, nonatomic) MessageBodyType messageBodyType;
         [Export("messageBodyType")]
@@ -1958,7 +1963,7 @@ namespace XBindings.EaseMob
 
     // @interface EMVoiceMessageBody : NSObject <IEMFileMessageBody>
     [BaseType(typeof(NSObject))]
-    interface EMVoiceMessageBody : IIEMFileMessageBody
+    interface EMVoiceMessageBody : IEMFileMessageBody
     {
         // @property (readonly, nonatomic) MessageBodyType messageBodyType;
         [Export("messageBodyType")]
@@ -2012,7 +2017,7 @@ namespace XBindings.EaseMob
 
     // @interface EMTextMessageBody : NSObject <IEMMessageBody>
     [BaseType(typeof(NSObject))]
-    interface EMTextMessageBody : IIEMMessageBody
+    interface EMTextMessageBody : IEMMessageBody
     {
         // @property (readonly, nonatomic) MessageBodyType messageBodyType;
         [Export("messageBodyType")]
@@ -2037,7 +2042,7 @@ namespace XBindings.EaseMob
 
     // @interface EMLocationMessageBody : NSObject <IEMMessageBody>
     [BaseType(typeof(NSObject))]
-    interface EMLocationMessageBody : IIEMMessageBody
+    interface EMLocationMessageBody : IEMMessageBody
     {
         // @property (readonly, nonatomic) MessageBodyType messageBodyType;
         [Export("messageBodyType")]
@@ -2070,7 +2075,7 @@ namespace XBindings.EaseMob
 
     // @interface EMImageMessageBody : NSObject <IEMFileMessageBody>
     [BaseType(typeof(NSObject))]
-    interface EMImageMessageBody : IIEMFileMessageBody
+    interface EMImageMessageBody : IEMFileMessageBody
     {
         // @property (readonly, nonatomic) MessageBodyType messageBodyType;
         [Export("messageBodyType")]
@@ -2168,7 +2173,7 @@ namespace XBindings.EaseMob
 
     // @interface EMCommandMessageBody : NSObject <IEMMessageBody>
     [BaseType(typeof(NSObject))]
-    interface EMCommandMessageBody : IIEMMessageBody
+    interface EMCommandMessageBody : IEMMessageBody
     {
         // @property (readonly, nonatomic) MessageBodyType messageBodyType;
         [Export("messageBodyType")]
@@ -2184,7 +2189,7 @@ namespace XBindings.EaseMob
 
         // @property (readonly, nonatomic, strong) NSArray * params;
         [Export("params", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] Params { get; }
 
         // @property (nonatomic, weak) EMMessage * _Nullable message;
@@ -2198,7 +2203,7 @@ namespace XBindings.EaseMob
 
     // @interface EMFileMessageBody : NSObject <IEMFileMessageBody>
     [BaseType(typeof(NSObject))]
-    interface EMFileMessageBody : IIEMFileMessageBody
+    interface EMFileMessageBody : IEMFileMessageBody
     {
         // @property (readonly, nonatomic) MessageBodyType messageBodyType;
         [Export("messageBodyType")]
@@ -2247,49 +2252,49 @@ namespace XBindings.EaseMob
     }
 
     // @protocol IEMChatObject <NSObject>
-    [Protocol, Model]
+    [Protocol]
     [BaseType(typeof(NSObject))]
     interface IEMChatObject
     {
         // @required @property (nonatomic, weak) id<IEMMessageBody> _Nullable messageBody;
-        [Abstract]
+        //[Abstract]
         [NullAllowed, Export("messageBody", ArgumentSemantic.Weak)]
         IEMMessageBody MessageBody { get; set; }
     }
 
     // @protocol IEMChatFile <IEMChatObject>
-    [Protocol, Model]
-    interface IEMChatFile : IIEMChatObject
+    [Protocol]
+    interface IEMChatFile : IEMChatObject
     {
         // @required @property (nonatomic, strong) NSString * displayName;
-        [Abstract]
+        //[Abstract]
         [Export("displayName", ArgumentSemantic.Strong)]
         string DisplayName { get; set; }
 
         // @required @property (nonatomic, strong) NSString * localPath;
-        [Abstract]
+        //[Abstract]
         [Export("localPath", ArgumentSemantic.Strong)]
         string LocalPath { get; set; }
 
         // @required @property (nonatomic) long long fileLength;
-        [Abstract]
+        //[Abstract]
         [Export("fileLength")]
         long FileLength { get; set; }
 
         // @required -(id)initWithData:(NSData *)aData displayName:(NSString *)aDisplayName;
-        [Abstract]
+        //[Abstract]
         [Export("initWithData:displayName:")]
-        IntPtr DisplayName(NSData aData, string aDisplayName);
+        IntPtr SetDisplayName(NSData aData, string aDisplayName);
 
         // @required -(id)initWithFile:(NSString *)filePath displayName:(NSString *)aDisplayName;
-        [Abstract]
+        //[Abstract]
         [Export("initWithFile:displayName:")]
-        IntPtr DisplayName(string filePath, string aDisplayName);
+        IntPtr SetDisplayName(string filePath, string aDisplayName);
     }
 
     // @interface EMChatVideo : NSObject <IEMChatFile>
     [BaseType(typeof(NSObject))]
-    interface EMChatVideo : IIEMChatFile
+    interface EMChatVideo : IEMChatFile
     {
         // @property (nonatomic, strong) NSString * displayName;
         [Export("displayName", ArgumentSemantic.Strong)]
@@ -2334,7 +2339,7 @@ namespace XBindings.EaseMob
 
     // @interface EMChatVoice : NSObject <IEMChatFile>
     [BaseType(typeof(NSObject))]
-    interface EMChatVoice : IIEMChatFile
+    interface EMChatVoice : IEMChatFile
     {
         // @property (nonatomic, strong) NSString * displayName;
         [Export("displayName", ArgumentSemantic.Strong)]
@@ -2367,7 +2372,7 @@ namespace XBindings.EaseMob
 
     // @interface EMChatText : NSObject <IEMChatObject>
     [BaseType(typeof(NSObject))]
-    interface EMChatText : IIEMChatObject
+    interface EMChatText : IEMChatObject
     {
         // @property (nonatomic, strong) NSString * text;
         [Export("text", ArgumentSemantic.Strong)]
@@ -2384,7 +2389,7 @@ namespace XBindings.EaseMob
 
     // @interface EMChatLocation : NSObject <IEMChatObject>
     [BaseType(typeof(NSObject))]
-    interface EMChatLocation : IIEMChatObject
+    interface EMChatLocation : IEMChatObject
     {
         // @property (nonatomic) double latitude;
         [Export("latitude")]
@@ -2416,19 +2421,19 @@ namespace XBindings.EaseMob
     }
 
     // @protocol IChatImageOptions <NSObject>
-    [Protocol, Model]
+    [Protocol]
     [BaseType(typeof(NSObject))]
     interface IChatImageOptions
     {
         // @required @property (assign, nonatomic) CGFloat compressionQuality;
-        [Abstract]
+        //[Abstract]
         [Export("compressionQuality")]
         nfloat CompressionQuality { get; set; }
     }
 
     // @interface EMChatImage : NSObject <IEMChatFile>
     [BaseType(typeof(NSObject))]
-    interface EMChatImage : IIEMChatFile
+    interface EMChatImage : IEMChatFile
     {
         // @property (nonatomic, strong) NSString * displayName;
         [Export("displayName", ArgumentSemantic.Strong)]
@@ -2469,7 +2474,7 @@ namespace XBindings.EaseMob
 
     // @interface EMChatFile : NSObject <IEMChatFile>
     [BaseType(typeof(NSObject))]
-    interface EMChatFile : IIEMChatFile
+    interface EMChatFile : IEMChatFile
     {
         // @property (nonatomic, strong) NSString * displayName;
         [Export("displayName", ArgumentSemantic.Strong)]
@@ -2498,7 +2503,7 @@ namespace XBindings.EaseMob
 
     // @interface EMChatCommand : NSObject <IEMChatObject>
     [BaseType(typeof(NSObject))]
-    interface EMChatCommand : IIEMChatObject
+    interface EMChatCommand : IEMChatObject
     {
         // @property (nonatomic, strong) NSString * cmd;
         [Export("cmd", ArgumentSemantic.Strong)]
@@ -2506,7 +2511,7 @@ namespace XBindings.EaseMob
 
         // @property (nonatomic, strong) NSArray * params __attribute__((deprecated("")));
         [Export("params", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] Params { get; set; }
 
         // @property (nonatomic, weak) id<IEMMessageBody> _Nullable messageBody;
@@ -2599,27 +2604,27 @@ namespace XBindings.EaseMob
 
         // @property (readonly, nonatomic, strong) NSArray * admins __attribute__((deprecated("")));
         [Export("admins", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] Admins { get; }
 
         // @property (readonly, nonatomic, strong) NSArray * members;
         [Export("members", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] Members { get; }
 
         // @property (readonly, nonatomic, strong) NSArray * occupants;
         [Export("occupants", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] Occupants { get; }
 
         // @property (readonly, nonatomic, strong) NSArray * bans;
         [Export("bans", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] Bans { get; }
 
         // -(EMGroupOccupant *)occupantWithUsername:(NSString *)username;
-        [Export("occupantWithUsername:")]
-        EMGroupOccupant OccupantWithUsername(string username);
+        ////[Export("occupantWithUsername:")]
+        //EMGroupOccupant OccupantWithUsername(string username);
 
         // +(instancetype)groupWithId:(NSString *)groupId;
         [Static]
@@ -2649,7 +2654,7 @@ namespace XBindings.EaseMob
 
         // @property (readonly, nonatomic, strong) NSArray * messages __attribute__((deprecated("")));
         [Export("messages", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] Messages { get; }
 
         // @property (readwrite, nonatomic) BOOL enableReceiveMessage __attribute__((deprecated("")));
@@ -2670,22 +2675,22 @@ namespace XBindings.EaseMob
 
         // -(NSUInteger)removeMessages:(NSArray *)aMessageIds __attribute__((deprecated("")));
         [Export("removeMessages:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         nuint RemoveMessages(NSObject[] aMessageIds);
 
         // -(NSUInteger)removeMessagesWithIds:(NSArray *)aMessageIds;
         [Export("removeMessagesWithIds:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         nuint RemoveMessagesWithIds(NSObject[] aMessageIds);
 
         // -(BOOL)removeAllMessages;
         [Export("removeAllMessages")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         bool RemoveAllMessages { get; }
 
         // -(NSArray *)loadAllMessages;
         [Export("loadAllMessages")]
-        [Verify(MethodToProperty), Verify(StronglyTypedNSArray)]
+         //[Verify(MethodToProperty), Verify(StronglyTypedNSArray)]
         NSObject[] LoadAllMessages { get; }
 
         // -(EMMessage *)loadMessage:(NSString *)aMessageId __attribute__((deprecated("")));
@@ -2698,37 +2703,37 @@ namespace XBindings.EaseMob
 
         // -(NSArray *)loadMessages:(NSArray *)aMessageIds __attribute__((deprecated("")));
         [Export("loadMessages:")]
-        [Verify(StronglyTypedNSArray), Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray), Verify(StronglyTypedNSArray)]
         NSObject[] LoadMessages(NSObject[] aMessageIds);
 
         // -(NSArray *)loadMessagesWithIds:(NSArray *)aMessageIds;
         [Export("loadMessagesWithIds:")]
-        [Verify(StronglyTypedNSArray), Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray), Verify(StronglyTypedNSArray)]
         NSObject[] LoadMessagesWithIds(NSObject[] aMessageIds);
 
         // -(NSArray *)loadNumbersOfMessages:(NSUInteger)aCount before:(long long)timestamp;
         [Export("loadNumbersOfMessages:before:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] LoadNumbersOfMessages(nuint aCount, long timestamp);
 
         // -(NSArray *)loadNumbersOfMessages:(NSUInteger)aCount withMessageId:(NSString *)messageId;
         [Export("loadNumbersOfMessages:withMessageId:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] LoadNumbersOfMessages(nuint aCount, string messageId);
 
         // -(NSArray *)loadNumbersOfMessages:(NSUInteger)aCount bodyType:(MessageBodyType)type before:(long long)timestamp;
         [Export("loadNumbersOfMessages:bodyType:before:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] LoadNumbersOfMessages(nuint aCount, MessageBodyType type, long timestamp);
 
         // -(EMMessage *)latestMessage;
         [Export("latestMessage")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         EMMessage LatestMessage { get; }
 
         // -(EMMessage *)latestMessageFromOthers;
         [Export("latestMessageFromOthers")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         EMMessage LatestMessageFromOthers { get; }
 
         // -(NSUInteger)markMessagesAsRead:(BOOL)isRead __attribute__((deprecated("")));
@@ -2749,7 +2754,7 @@ namespace XBindings.EaseMob
 
         // -(NSUInteger)unreadMessagesCount;
         [Export("unreadMessagesCount")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         nuint UnreadMessagesCount { get; }
     }
 
@@ -2894,7 +2899,7 @@ namespace XBindings.EaseMob
         void SetProgress(float progress);
 
         // @required -(void)setProgress:(float)progress forMessage:(EMMessage *)message forMessageBody:(id<IEMMessageBody>)messageBody;
-        [Abstract]
+        //[Abstract]
         [Export("setProgress:forMessage:forMessageBody:")]
         void ForMessage(float progress, EMMessage message, IEMMessageBody messageBody);
     }
@@ -2918,7 +2923,7 @@ namespace XBindings.EaseMob
         // +(EaseMob *)sharedInstance;
         [Static]
         [Export("sharedInstance")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         EaseMob SharedInstance { get; }
 
         // -(EMError *)registerSDKWithAppKey:(NSString *)anAppKey __attribute__((deprecated("")));
@@ -2943,96 +2948,96 @@ namespace XBindings.EaseMob
     }
 
     // @protocol ICallManagerBase <NSObject>
-    [Protocol, Model]
+    [Protocol]
     [BaseType(typeof(NSObject))]
     interface ICallManagerBase
     {
         // @required -(void)addDelegate:(id<EMCallManagerDelegate>)delegate delegateQueue:(dispatch_queue_t)queue;
-        [Abstract]
+        //[Abstract]
         [Export("addDelegate:delegateQueue:")]
-        void AddDelegate(EMCallManagerDelegate @delegate, DispatchQueue queue);
+        void AddDelegate(EMCallManagerDelegate @delegate1, DispatchQueue queue);
 
         // @required -(void)removeDelegate:(id<EMCallManagerDelegate>)delegate;
-        [Abstract]
+        //[Abstract]
         [Export("removeDelegate:")]
-        void RemoveDelegate(EMCallManagerDelegate @delegate);
+        void RemoveDelegate(EMCallManagerDelegate @delegate1);
     }
 
     // @protocol ICallManagerCall <NSObject>
-    [Protocol, Model]
+    [Protocol]
     [BaseType(typeof(NSObject))]
     interface ICallManagerCall
     {
         // @required -(EMError *)asyncAnswerCall:(NSString *)sessionId;
-        [Abstract]
+        //[Abstract]
         [Export("asyncAnswerCall:")]
         EMError AsyncAnswerCall(string sessionId);
 
         // @required -(EMError *)asyncEndCall:(NSString *)sessionId reason:(EMCallStatusChangedReason)reason;
-        [Abstract]
+        //[Abstract]
         [Export("asyncEndCall:reason:")]
         EMError AsyncEndCall(string sessionId, EMCallStatusChangedReason reason);
 
         // @required -(EMError *)markCallSession:(NSString *)sessionId asSilence:(BOOL)isSilence;
-        [Abstract]
+        //[Abstract]
         [Export("markCallSession:asSilence:")]
         EMError MarkCallSession(string sessionId, bool isSilence);
 
         // @required -(EMCallSession *)asyncMakeVoiceCall:(NSString *)chatter timeout:(NSUInteger)timeout error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("asyncMakeVoiceCall:timeout:error:")]
         EMCallSession AsyncMakeVoiceCall(string chatter, nuint timeout, out EMError pError);
 
         // @required -(EMCallSession *)asyncMakeVideoCall:(NSString *)chatter timeout:(NSUInteger)timeout error:(EMError **)pError;
-        [Abstract]
+        //[Abstract]
         [Export("asyncMakeVideoCall:timeout:error:")]
         EMCallSession AsyncMakeVideoCall(string chatter, nuint timeout, out EMError pError);
 
         // @required -(void)processPreviewData:(char *)data width:(int)width height:(int)height;
-        [Abstract]
-        [Export("processPreviewData:width:height:")]
-        unsafe void ProcessPreviewData(sbyte* data, int width, int height);
+        //[Abstract]
+        //[Export("processPreviewData:width:height:")]
+        //unsafe void ProcessPreviewData(sbyte* data, int width, int height); //ToDo
 
         // @required -(int)getVideoTimedelay;
-        [Abstract]
+        //[Abstract]
         [Export("getVideoTimedelay")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         int VideoTimedelay { get; }
 
         // @required -(int)getVideoFramerate;
-        [Abstract]
+        //[Abstract]
         [Export("getVideoFramerate")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         int VideoFramerate { get; }
 
         // @required -(int)getVideoLostcnt;
-        [Abstract]
+        //[Abstract]
         [Export("getVideoLostcnt")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         int VideoLostcnt { get; }
 
         // @required -(int)getVideoWidth;
-        [Abstract]
+        //[Abstract]
         [Export("getVideoWidth")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         int VideoWidth { get; }
 
         // @required -(int)getVideoHeight;
-        [Abstract]
+        //[Abstract]
         [Export("getVideoHeight")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         int VideoHeight { get; }
 
         // @required -(int)getVideoRemoteBitrate;
-        [Abstract]
+        //[Abstract]
         [Export("getVideoRemoteBitrate")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         int VideoRemoteBitrate { get; }
 
         // @required -(int)getVideoLocalBitrate;
-        [Abstract]
+        //[Abstract]
         [Export("getVideoLocalBitrate")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         int VideoLocalBitrate { get; }
 
         // @optional -(EMError *)asyncAcceptCallSessionWithId:(NSString *)sessionId __attribute__((deprecated("")));
@@ -3049,8 +3054,9 @@ namespace XBindings.EaseMob
     }
 
     // @protocol ICallManager <ICallManagerBase, ICallManagerCall>
-    [Protocol, Model]
-    interface ICallManager : IICallManagerBase, IICallManagerCall
+    [Protocol]
+	[BaseType(typeof(ICallManagerBase))]
+    interface ICallManager : ICallManagerCall
     {
     }
 
@@ -3066,7 +3072,8 @@ namespace XBindings.EaseMob
 
     // @protocol EMCallManagerDelegate <EMCallManagerCallDelegate>
     [Protocol, Model]
-    interface EMCallManagerDelegate : IEMCallManagerCallDelegate
+	[BaseType(typeof(EMCallManagerCallDelegate))]
+    interface EMCallManagerDelegate //: EMCallManagerCallDelegate
     {
     }
 
@@ -3104,29 +3111,29 @@ namespace XBindings.EaseMob
     }
 
     // @protocol IOpenGLView <NSObject>
-    [Protocol, Model]
+    [Protocol]
     [BaseType(typeof(NSObject))]
     interface IOpenGLView
     {
         // @required -(void)displayYUV420pData:(char *)data width:(GLuint)width height:(GLuint)height;
-        [Abstract]
-        [Export("displayYUV420pData:width:height:")]
-        unsafe void DisplayYUV420pData(sbyte* data, uint width, uint height);
+        //[Abstract]
+        //[Export("displayYUV420pData:width:height:")]
+        //unsafe void DisplayYUV420pData(sbyte* data, uint width, uint height); //ToDo
 
         // @required -(void)setVideoSize:(GLuint)width height:(GLuint)height;
-        [Abstract]
+        //[Abstract]
         [Export("setVideoSize:height:")]
         void SetVideoSize(uint width, uint height);
 
         // @required -(void)clearFrame;
-        [Abstract]
+        //[Abstract]
         [Export("clearFrame")]
         void ClearFrame();
     }
 
     // @interface OpenGLView20 : UIView <IOpenGLView>
     [BaseType(typeof(UIView))]
-    interface OpenGLView20 : IIOpenGLView
+    interface OpenGLView20 : IOpenGLView
     {
         // @property (nonatomic, strong) NSString * sessionPreset;
         [Export("sessionPreset", ArgumentSemantic.Strong)]
@@ -3146,6 +3153,7 @@ namespace XBindings.EaseMob
     [BaseType(typeof(EaseMob))]
     interface EaseMob_CallService
     {
+		[Static]
         // @property (readonly, nonatomic, strong) id<ICallManager> callManager;
         [Export("callManager", ArgumentSemantic.Strong)]
         ICallManager CallManager { get; }
