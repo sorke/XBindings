@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using ObjCRuntime;
+
 namespace XBindings.RongCloud
 {
     public enum Mode : ulong
@@ -21,32 +22,32 @@ namespace XBindings.RongCloud
     {
         // extern void * Encoder_Interface_init (int dtx);
         [DllImport("__Internal")]
-        [Verify(PlatformInvoke)]
+        //[Verify(PlatformInvoke)]
         static extern unsafe void* Encoder_Interface_init(int dtx);
 
         // extern void Encoder_Interface_exit (void *state);
         [DllImport("__Internal")]
-        [Verify(PlatformInvoke)]
+        //[Verify(PlatformInvoke)]
         static extern unsafe void Encoder_Interface_exit(void* state);
 
         // extern int Encoder_Interface_Encode (void *state, enum Mode mode, const short *speech, unsigned char *out, int forceSpeech);
         [DllImport("__Internal")]
-        [Verify(PlatformInvoke)]
+        //[Verify(PlatformInvoke)]
         static extern unsafe int Encoder_Interface_Encode(void* state, Mode mode, short* speech, byte* @out, int forceSpeech);
 
         // extern void * Decoder_Interface_init ();
         [DllImport("__Internal")]
-        [Verify(PlatformInvoke)]
+        //[Verify(PlatformInvoke)]
         static extern unsafe void* Decoder_Interface_init();
 
         // extern void Decoder_Interface_exit (void *state);
         [DllImport("__Internal")]
-        [Verify(PlatformInvoke)]
+        //[Verify(PlatformInvoke)]
         static extern unsafe void Decoder_Interface_exit(void* state);
 
         // extern void Decoder_Interface_Decode (void *state, const unsigned char *in, short *out, int bfi);
         [DllImport("__Internal")]
-        [Verify(PlatformInvoke)]
+        //[Verify(PlatformInvoke)]
         static extern unsafe void Decoder_Interface_Decode(void* state, byte* @in, short* @out, int bfi);
     }
 

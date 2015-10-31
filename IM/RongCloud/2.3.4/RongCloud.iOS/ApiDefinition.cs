@@ -112,13 +112,13 @@ namespace XBindings.RongCloud
 
         // @property (nonatomic, strong) NSArray * subMenuItems;
         [Export("subMenuItems", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] SubMenuItems { get; set; }
 
         // +(NSArray *)menuItemsFromJsonArray:(NSArray *)jsonArray;
         [Static]
         [Export("menuItemsFromJsonArray:")]
-        [Verify(StronglyTypedNSArray), Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray), Verify(StronglyTypedNSArray)]
         NSObject[] MenuItemsFromJsonArray(NSObject[] jsonArray);
     }
 
@@ -128,12 +128,12 @@ namespace XBindings.RongCloud
     {
         // @property (nonatomic, strong) NSArray * menuItems;
         [Export("menuItems", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] MenuItems { get; set; }
 
         // -(void)decodeWithJsonDictionaryArray:(NSArray *)jsonDictionary;
         [Export("decodeWithJsonDictionaryArray:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void DecodeWithJsonDictionaryArray(NSObject[] jsonDictionary);
     }
 
@@ -344,7 +344,7 @@ namespace XBindings.RongCloud
 
         // -(NSString *)encode;
         [Export("encode")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         string Encode { get; }
 
         // +(instancetype)decodeWithJsonString:(NSString *)userDataJsonString;
@@ -372,7 +372,7 @@ namespace XBindings.RongCloud
 
         // @optional -(void)notifyWatchKitAddMemberToDiscussion:(NSString *)discussionId userIdList:(NSArray *)userIdList;
         [Export("notifyWatchKitAddMemberToDiscussion:userIdList:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void NotifyWatchKitAddMemberToDiscussion(string discussionId, NSObject[] userIdList);
 
         // @optional -(void)notifyWatchKitDiscussionOperationCompletion:(int)tag status:(RCErrorCode)status;
@@ -381,7 +381,7 @@ namespace XBindings.RongCloud
 
         // @optional -(void)notifyWatchKitCreateDiscussion:(NSString *)name userIdList:(NSArray *)userIdList;
         [Export("notifyWatchKitCreateDiscussion:userIdList:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void NotifyWatchKitCreateDiscussion(string name, NSObject[] userIdList);
 
         // @optional -(void)notifyWatchKitCreateDiscussionSuccess:(NSString *)discussionId;
@@ -394,7 +394,7 @@ namespace XBindings.RongCloud
 
         // @optional -(void)notifyWatchKitClearConversations:(NSArray *)conversationTypeList;
         [Export("notifyWatchKitClearConversations:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void NotifyWatchKitClearConversations(NSObject[] conversationTypeList);
 
         // @optional -(void)notifyWatchKitClearMessages:(RCConversationType)conversationType targetId:(NSString *)targetId;
@@ -407,7 +407,7 @@ namespace XBindings.RongCloud
 
         // @optional -(void)notifyWatchKitDeleteMessages:(NSArray *)messageIds;
         [Export("notifyWatchKitDeleteMessages:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void NotifyWatchKitDeleteMessages(NSObject[] messageIds);
 
         // @optional -(void)notifyWatchKitSendMessage:(RCMessage *)message;
@@ -462,7 +462,7 @@ namespace XBindings.RongCloud
     }
 
     // @protocol RCPublicServiceDataSource <NSObject>
-    [Protocol, Model]
+    [Protocol]//, Model]
     [BaseType(typeof(NSObject))]
     interface RCPublicServiceDataSource
     {
@@ -477,8 +477,8 @@ namespace XBindings.RongCloud
         void IsNeedAuthorizationForPublicServiceType(RCPublicServiceType publicServiceType, string publicServiceId, string publicServiceName, Action<bool> completion);
     }
 
-    [Static]
-    [Verify(ConstantsInterfaceAssociation)]
+    //[Static]
+    //[Verify(ConstantsInterfaceAssociation)]
     partial interface Constants
     {
         // extern NSString *const KNotificationclearTheConversationMessages __attribute__((visibility("default")));
@@ -494,7 +494,7 @@ namespace XBindings.RongCloud
         // @required -(void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object;
         [Abstract]
         [Export("onReceived:left:object:")]
-        void Left(RCMessage message, int nLeft, NSObject @object);
+        void Left(RCMessage message, int nLeft, NSObject @object1);
     }
 
     // @protocol RCConnectionStatusChangeDelegate <NSObject>
@@ -566,11 +566,11 @@ namespace XBindings.RongCloud
 
         // -(void)setReceiveMessageDelegate:(id<RCIMClientReceiveMessageDelegate>)delegate object:(id)userData;
         [Export("setReceiveMessageDelegate:object:")]
-        void SetReceiveMessageDelegate(RCIMClientReceiveMessageDelegate @delegate, NSObject userData);
+        void SetReceiveMessageDelegate(RCIMClientReceiveMessageDelegate @delegate1, NSObject userData);
 
         // -(void)setRCConnectionStatusChangeDelegate:(id<RCConnectionStatusChangeDelegate>)delegate;
         [Export("setRCConnectionStatusChangeDelegate:")]
-        void SetRCConnectionStatusChangeDelegate(RCConnectionStatusChangeDelegate @delegate);
+        void SetRCConnectionStatusChangeDelegate(RCConnectionStatusChangeDelegate @delegate1);
 
         // -(RCMessage *)sendStatusMessage:(RCConversationType)conversationType targetId:(NSString *)targetId content:(RCMessageContent *)content success:(void (^)(long))successBlock error:(void (^)(RCErrorCode, long))errorBlock;
         [Export("sendStatusMessage:targetId:content:success:error:")]
@@ -606,7 +606,7 @@ namespace XBindings.RongCloud
 
         // -(NSArray *)getConversationList:(NSArray *)conversationTypeList;
         [Export("getConversationList:")]
-        [Verify(StronglyTypedNSArray), Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray), Verify(StronglyTypedNSArray)]
         NSObject[] GetConversationList(NSObject[] conversationTypeList);
 
         // -(RCConversation *)getConversation:(RCConversationType)conversationType targetId:(NSString *)targetId;
@@ -623,7 +623,7 @@ namespace XBindings.RongCloud
 
         // -(int)getTotalUnreadCount;
         [Export("getTotalUnreadCount")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         int TotalUnreadCount { get; }
 
         // -(int)getUnreadCount:(RCConversationType)conversationType targetId:(NSString *)targetId;
@@ -632,17 +632,17 @@ namespace XBindings.RongCloud
 
         // -(int)getUnreadCount:(NSArray *)conversationTypes;
         [Export("getUnreadCount:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         int GetUnreadCount(NSObject[] conversationTypes);
 
         // -(NSArray *)getLatestMessages:(RCConversationType)conversationType targetId:(NSString *)targetId count:(int)count;
         [Export("getLatestMessages:targetId:count:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] GetLatestMessages(RCConversationType conversationType, string targetId, int count);
 
         // -(NSArray *)getHistoryMessages:(RCConversationType)conversationType targetId:(NSString *)targetId oldestMessageId:(long)oldestMessageId count:(int)count;
         [Export("getHistoryMessages:targetId:oldestMessageId:count:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] GetHistoryMessages(RCConversationType conversationType, string targetId, nint oldestMessageId, int count);
 
         // -(RCMessage *)insertMessage:(RCConversationType)conversationType targetId:(NSString *)targetId senderUserId:(NSString *)senderUserId sendStatus:(RCSentStatus)sendStatus content:(RCMessageContent *)content;
@@ -651,7 +651,7 @@ namespace XBindings.RongCloud
 
         // -(BOOL)deleteMessages:(NSArray *)messageIds;
         [Export("deleteMessages:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         bool DeleteMessages(NSObject[] messageIds);
 
         // -(BOOL)clearMessages:(RCConversationType)conversationType targetId:(NSString *)targetId;
@@ -664,7 +664,7 @@ namespace XBindings.RongCloud
 
         // -(BOOL)clearConversations:(NSArray *)conversationTypeList;
         [Export("clearConversations:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         bool ClearConversations(NSObject[] conversationTypeList);
 
         // -(BOOL)setMessageExtra:(long)messageId value:(NSString *)value;
@@ -701,12 +701,12 @@ namespace XBindings.RongCloud
 
         // -(void)createDiscussion:(NSString *)name userIdList:(NSArray *)userIdList success:(void (^)(RCDiscussion *))successBlock error:(void (^)(RCErrorCode))errorBlock;
         [Export("createDiscussion:userIdList:success:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void CreateDiscussion(string name, NSObject[] userIdList, Action<RCDiscussion> successBlock, Action<RCErrorCode> errorBlock);
 
         // -(void)addMemberToDiscussion:(NSString *)discussionId userIdList:(NSArray *)userIdList success:(void (^)(RCDiscussion *))successBlock error:(void (^)(RCErrorCode))errorBlock;
         [Export("addMemberToDiscussion:userIdList:success:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void AddMemberToDiscussion(string discussionId, NSObject[] userIdList, Action<RCDiscussion> successBlock, Action<RCErrorCode> errorBlock);
 
         // -(void)removeMemberFromDiscussion:(NSString *)discussionId userId:(NSString *)userId success:(void (^)(RCDiscussion *))successBlock error:(void (^)(RCErrorCode))errorBlock;
@@ -731,7 +731,7 @@ namespace XBindings.RongCloud
 
         // -(void)syncGroups:(NSArray *)groupList success:(void (^)())successBlock error:(void (^)(RCErrorCode))errorBlock;
         [Export("syncGroups:success:error:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         void SyncGroups(NSObject[] groupList, Action successBlock, Action<RCErrorCode> errorBlock);
 
         // -(void)joinGroup:(NSString *)groupId groupName:(NSString *)groupName success:(void (^)())successBlock error:(void (^)(RCErrorCode))errorBlock;
@@ -752,7 +752,7 @@ namespace XBindings.RongCloud
 
         // -(RCNetworkStatus)getCurrentNetworkStatus;
         [Export("getCurrentNetworkStatus")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         RCNetworkStatus CurrentNetworkStatus { get; }
 
         // -(void)addToBlacklist:(NSString *)userId success:(void (^)())successBlock error:(void (^)(RCErrorCode))errorBlock;
@@ -809,7 +809,7 @@ namespace XBindings.RongCloud
 
         // -(NSArray *)getPublicServiceList;
         [Export("getPublicServiceList")]
-        [Verify(MethodToProperty), Verify(StronglyTypedNSArray)]
+         //[Verify(MethodToProperty), Verify(StronglyTypedNSArray)]
         NSObject[] PublicServiceList { get; }
 
         // -(UIViewController *)getPublicServiceWebViewController:(NSString *)URLString;
@@ -818,7 +818,7 @@ namespace XBindings.RongCloud
 
         // -(RCConnectionStatus)getConnectionStatus;
         [Export("getConnectionStatus")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         RCConnectionStatus ConnectionStatus { get; }
 
         // -(void)getRemoteHistoryMessages:(RCConversationType)conversationType targetId:(NSString *)targetId recordTime:(long)recordTime count:(int)count success:(void (^)(NSArray *))successBlock;
@@ -895,7 +895,7 @@ namespace XBindings.RongCloud
     }
 
     [Static]
-    [Verify(ConstantsInterfaceAssociation)]
+    //[Verify(ConstantsInterfaceAssociation)]
     partial interface Constants
     {
         // extern NSString *const kRCUserName;
@@ -936,14 +936,14 @@ namespace XBindings.RongCloud
     }
 
     // @protocol RCMessageCoding <NSObject>
-    [Protocol, Model]
+    [Protocol]//, Model]
     [BaseType(typeof(NSObject))]
     interface RCMessageCoding
     {
         // @required -(NSData *)encode;
         [Abstract]
         [Export("encode")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         NSData Encode { get; }
 
         // @required -(void)decodeWithData:(NSData *)data;
@@ -954,7 +954,7 @@ namespace XBindings.RongCloud
         // @required +(NSString *)getObjectName;
         [Static, Abstract]
         [Export("getObjectName")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         string ObjectName { get; }
     }
 
@@ -966,13 +966,13 @@ namespace XBindings.RongCloud
         // @required +(RCMessagePersistent)persistentFlag;
         [Static, Abstract]
         [Export("persistentFlag")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         RCMessagePersistent PersistentFlag { get; }
     }
 
     // @interface RCMessageContent : NSObject <RCMessageCoding, RCMessagePersistentCompatible>
     [BaseType(typeof(NSObject))]
-    interface RCMessageContent : IRCMessageCoding, IRCMessagePersistentCompatible
+    interface RCMessageContent : RCMessageCoding, RCMessagePersistentCompatible
     {
         // @property (nonatomic, strong) RCUserInfo * senderUserInfo;
         [Export("senderUserInfo", ArgumentSemantic.Strong)]
@@ -1069,25 +1069,25 @@ namespace XBindings.RongCloud
         // +(NSArray *)methodsInClass:(Class)aClass;
         [Static]
         [Export("methodsInClass:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] MethodsInClass(Class aClass);
 
         // +(NSArray *)iVarsInClass:(Class)aClass;
         [Static]
         [Export("iVarsInClass:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] IVarsInClass(Class aClass);
 
         // +(NSString *)currentSystemTime;
         [Static]
         [Export("currentSystemTime")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         string CurrentSystemTime { get; }
 
         // +(NSData *)dataWithBase64EncodedString:(NSString *)string;
         [Static]
         [Export("dataWithBase64EncodedString:")]
-        NSData DataWithBase64EncodedString(string @string);
+        NSData DataWithBase64EncodedString(string @string1);
 
         // +(NSString *)base64EncodedStringFrom:(NSData *)data;
         [Static]
@@ -1130,9 +1130,9 @@ namespace XBindings.RongCloud
         NSData CompressedImageWithMaxDataLength(UIImage image, nfloat maxDataLength);
 
         // +(NSData *)compressedImageAndScalingSize:(UIImage *)image targetSize:(CGSize)targetSize maxDataLen:(CGFloat)maxDataLen;
-        [Static]
-        [Export("compressedImageAndScalingSize:targetSize:maxDataLen:")]
-        NSData CompressedImageAndScalingSize(UIImage image, CGSize targetSize, nfloat maxDataLen);
+        //[Static]
+        //[Export("compressedImageAndScalingSize:targetSize:maxDataLen:")]
+        //NSData CompressedImageAndScalingSize(UIImage image, CGSize targetSize, nfloat maxDataLen);
 
         // +(NSData *)compressedImageAndScalingSize:(UIImage *)image targetSize:(CGSize)targetSize percent:(CGFloat)percent;
         [Static]
@@ -1147,43 +1147,43 @@ namespace XBindings.RongCloud
         // +(NSString *)applicationDocumentsDirectory;
         [Static]
         [Export("applicationDocumentsDirectory")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         string ApplicationDocumentsDirectory { get; }
 
         // +(NSString *)rongDocumentsDirectory;
         [Static]
         [Export("rongDocumentsDirectory")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         string RongDocumentsDirectory { get; }
 
         // +(NSString *)rongImageCacheDirectory;
         [Static]
         [Export("rongImageCacheDirectory")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         string RongImageCacheDirectory { get; }
 
         // +(NSString *)currentCarrier;
         [Static]
         [Export("currentCarrier")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         string CurrentCarrier { get; }
 
         // +(NSString *)currentNetWork;
         [Static]
         [Export("currentNetWork")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         string CurrentNetWork { get; }
 
         // +(NSString *)currentSystemVersion;
         [Static]
         [Export("currentSystemVersion")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         string CurrentSystemVersion { get; }
 
         // +(NSString *)currentDeviceModel;
         [Static]
         [Export("currentDeviceModel")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         string CurrentDeviceModel { get; }
     }
 
@@ -1354,7 +1354,7 @@ namespace XBindings.RongCloud
         // +(RCAMRDataConverter *)sharedAMRDataConverter;
         [Static]
         [Export("sharedAMRDataConverter")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         RCAMRDataConverter SharedAMRDataConverter { get; }
 
         // -(NSData *)dcodeAMRToWAVE:(NSData *)data;
@@ -1406,7 +1406,7 @@ namespace XBindings.RongCloud
 
         // @property (nonatomic, strong) NSArray * memberIdList;
         [Export("memberIdList", ArgumentSemantic.Strong)]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         NSObject[] MemberIdList { get; set; }
 
         // @property (assign, nonatomic) int inviteStatus;
@@ -1419,7 +1419,7 @@ namespace XBindings.RongCloud
 
         // -(instancetype)initWithDiscussionId:(NSString *)discussionId discussionName:(NSString *)discussionName creatorId:(NSString *)creatorId conversationType:(int)conversationType memberIdList:(NSArray *)memberIdList inviteStatus:(int)inviteStatus msgNotificationStatus:(int)pushMessageNotificationStatus;
         [Export("initWithDiscussionId:discussionName:creatorId:conversationType:memberIdList:inviteStatus:msgNotificationStatus:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         IntPtr Constructor(string discussionId, string discussionName, string creatorId, int conversationType, NSObject[] memberIdList, int inviteStatus, int pushMessageNotificationStatus);
     }
 
@@ -1552,6 +1552,7 @@ namespace XBindings.RongCloud
     [BaseType(typeof(NSString))]
     interface NSString_JSONCategories
     {
+		[Static]
         // @property (readonly, nonatomic, strong) id jsonObject;
         [Export("jsonObject", ArgumentSemantic.Strong)]
         NSObject JsonObject { get; }
@@ -1562,6 +1563,7 @@ namespace XBindings.RongCloud
     [BaseType(typeof(NSObject))]
     interface NSObject_JSONCategories
     {
+		[Static]
         // @property (readonly, copy, nonatomic) NSData * jsonString;
         [Export("jsonString", ArgumentSemantic.Copy)]
         NSData JsonString { get; }
@@ -1579,13 +1581,13 @@ namespace XBindings.RongCloud
         // +(NSString *)jsonStringWithArray:(NSArray *)array;
         [Static]
         [Export("jsonStringWithArray:")]
-        [Verify(StronglyTypedNSArray)]
+         //[Verify(StronglyTypedNSArray)]
         string JsonStringWithArray(NSObject[] array);
 
         // +(NSDictionary *)dictionaryWithJSONString:(NSString *)string;
         [Static]
         [Export("dictionaryWithJSONString:")]
-        NSDictionary DictionaryWithJSONString(string @string);
+        NSDictionary DictionaryWithJSONString(string @string1);
     }
 
     // @interface RCUnknownMessage : RCMessageContent
@@ -1683,25 +1685,26 @@ namespace XBindings.RongCloud
     }
 
     // @protocol RCMessageContentView
-    [Protocol, Model]
+    [Protocol]//, Model]
+	[BaseType(typeof(NSObject))]
     interface RCMessageContentView
     {
         // @required -(NSString *)conversationDigest;
         [Abstract]
         [Export("conversationDigest")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         string ConversationDigest { get; }
     }
 
     // @interface RCHandShakeMessage : RCMessageContent <RCMessageCoding, RCMessagePersistentCompatible>
     [BaseType(typeof(RCMessageContent))]
-    interface RCHandShakeMessage : IRCMessageCoding, IRCMessagePersistentCompatible
+    interface RCHandShakeMessage : RCMessageCoding, RCMessagePersistentCompatible
     {
     }
 
     // @interface RCSuspendMessage : RCMessageContent <RCMessageCoding, RCMessagePersistentCompatible>
     [BaseType(typeof(RCMessageContent))]
-    interface RCSuspendMessage : IRCMessageCoding, IRCMessagePersistentCompatible
+    interface RCSuspendMessage : RCMessageCoding, RCMessagePersistentCompatible
     {
     }
 
@@ -1736,7 +1739,7 @@ namespace XBindings.RongCloud
     }
 
     // @protocol RCRealTimeLocationProxy <NSObject>
-    [Protocol, Model]
+    [Protocol]//, Model]
     [BaseType(typeof(NSObject))]
     interface RCRealTimeLocationProxy
     {
@@ -1758,23 +1761,23 @@ namespace XBindings.RongCloud
         // @required -(void)addRealTimeLocationObserver:(id<RCRealTimeLocationObserver>)delegate;
         [Abstract]
         [Export("addRealTimeLocationObserver:")]
-        void AddRealTimeLocationObserver(RCRealTimeLocationObserver @delegate);
+        void AddRealTimeLocationObserver(RCRealTimeLocationObserver @delegate1);
 
         // @required -(void)removeRealTimeLocationObserver:(id<RCRealTimeLocationObserver>)delegate;
         [Abstract]
         [Export("removeRealTimeLocationObserver:")]
-        void RemoveRealTimeLocationObserver(RCRealTimeLocationObserver @delegate);
+        void RemoveRealTimeLocationObserver(RCRealTimeLocationObserver @delegate1);
 
         // @required -(NSArray *)getParticipants;
         [Abstract]
         [Export("getParticipants")]
-        [Verify(MethodToProperty), Verify(StronglyTypedNSArray)]
+         //[Verify(MethodToProperty), Verify(StronglyTypedNSArray)]
         NSObject[] Participants { get; }
 
         // @required -(RCRealTimeLocationStatus)getStatus;
         [Abstract]
         [Export("getStatus")]
-        [Verify(MethodToProperty)]
+         //[Verify(MethodToProperty)]
         RCRealTimeLocationStatus Status { get; }
 
         // @required -(CLLocation *)getLocation:(NSString *)userId;

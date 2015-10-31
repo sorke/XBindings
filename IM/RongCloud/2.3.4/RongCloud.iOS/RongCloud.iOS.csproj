@@ -47,9 +47,6 @@
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="RongCloud.bundle\actionbar_add_icon%402x.png" />
   </ItemGroup>
   <ItemGroup>
@@ -395,4 +392,7 @@
     <ObjcBindingNativeLibrary Include="RongIMLib.a" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
 </Project>
