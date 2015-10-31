@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{79DA4A3B-9EEE-4513-9B7F-E264DD64E71E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>XBindings.RongCloud</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>XBindings.RongCloud.iOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RongIMLib.linkwith.cs">
+      <DependentUpon>RongIMLib.a</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\actionbar_add_icon%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\actionbar_call_icon%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\actionbar_call_icon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\actionbar_camera_icon%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\actionbar_camera_icon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\actionbar_location_icon%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\actionbar_location_icon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\actionbar_picture_icon%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\actionbar_picture_icon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\add_members%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\addition%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\audio_column%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\audio_press_short%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\block_notification%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\broken%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\case_cell_Line%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\chat_from_bg_normal%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\chat_from_timebg%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\chat_setmode_add_btn_normal%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\chat_setmode_key_btn_normal%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\chat_setmode_key_btn_selected%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\chat_setmode_voice_btn_normal%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\chat_to_bg_normal%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\chatting_biaoqing_btn_normal%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\checkbox_selected%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\checkbox_unselected%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\conversation_item_sendfailed%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\conversation_item_sending%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\conversation_item_unreadcount_icon%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\default_collection_portrait%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\default_collection_portrait%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\default_discussion_collection_portrait%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\default_discussion_collection_portrait%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\default_discussion_portrait%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\default_discussion_portrait%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\default_group_portrait%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\default_group_portrait%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\default_portrait%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\default_portrait%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\default_portrait_msg%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\default_portrait_msg%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\delete_member_tip%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\delete_members%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\deselect%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\disable_select%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\downlaod_picture_fail%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\emoji_btn_delete%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\emoji_btn_send_bg%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\emoji_pagecontrol_normol%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\emoji_pagecontrol_selected%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\exclamation%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\from_voice_play%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\from_voice_play1%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\from_voice_play2%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\from_voice_play3%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\map_annotation%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\message_send_fail_status%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\message_sending_status%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\navigator_btn_add%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\navigator_btn_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\navigator_btn_back%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\navigator_btn_more%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\network_status_warning%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\no_message_img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\no_message_img%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\portrait_kefu%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\press_for_audio%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\press_for_audio_down%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\pub_input%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\pub_menu%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\public_serive_menu_icon%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\public_serive_menu_icon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\public_service_submenu_bg%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\public_service_submenu_bg%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\rc_richcontentmsg_placeholder%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\red_background%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\selected%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\sending_status%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\sendMsg_failed_tip%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\sms-received.caf" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\to_voice_play%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\to_voice_play1%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\to_voice_play2%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\to_voice_play3%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\unicode_to_hanyu_pinyin.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voice_record_cancel%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voice_unread%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voice_volume0%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voice_volume1%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voice_volume2%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voice_volume3%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voice_volume4%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\accept_btn_hover%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\accept_btn_hover%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\accept_btn_normal%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\accept_btn_normal%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\end_btn_hover%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\end_btn_hover%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\end_btn_normal%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\end_btn_normal%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\mute_btn_hover%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\mute_btn_hover%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\mute_btn_normal%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\mute_btn_normal%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\portrait_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\speaker_btn_hover%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\speaker_btn_hover%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\speaker_btn_normal%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\speaker_btn_normal%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\voip_call.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="RongCloud.bundle\voip\voip_calling_ring.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingNativeLibrary Include="RongIMLib.a" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+</Project>
