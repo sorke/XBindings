@@ -1,0 +1,58 @@
+<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk']/class[@name='ECMessage']/method[@name='getType' and count(parameter)=0]" name="managedName">GetMessageType</attr>
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk']/class[@name='ECMessage']/method[@name='setType' and count(parameter)=1 and parameter[1][@type='com.yuntongxun.ecsdk.ECMessage.Type']]" name="managedName">SetMessageType</attr>
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk']/class[@name='ECMessage']/method[@name='getDirection' and count(parameter)=0]" name="managedName">GetMessageDirection</attr>
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk']/class[@name='ECMessage']/method[@name='setDirection' and count(parameter)=1 and parameter[1][@type='com.yuntongxun.ecsdk.ECMessage.Direction']]" name="managedName">SetMessageDirection</attr>
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk.meeting.intercom']/class[@name='ECInterPhoneMeetingMember.Online']" name="managedName">OnlineStatus</attr>
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk.meeting']/class[@name='ECMeetingMember']/method[@name='getType' and count(parameter)=0]" name="managedName">GetMeetingMemberType</attr>
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk.meeting']/class[@name='ECMeetingMember.Type']" name="managedName">MeetingMemberType</attr>
+  
+  
+  
+  <!-- 消除警告-->
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk']/class[@name='ECMessage']/method[@name='clone' and count(parameter)=0]" name="managedName">JavaClone</attr>
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.im']/class[@name='ECVoiceMessageBody']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.im']/class[@name='ECImageMessageBody']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.im']/class[@name='ECVideoMessageBody']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.im.group']/class[@name='ECDismissGroupMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.im.group']/class[@name='ECInviterMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.im.group']/class[@name='ECJoinGroupMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.im.group']/class[@name='ECModifyGroupMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.im.group']/class[@name='ECProposerMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.im.group']/class[@name='ECQuitGroupMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.im.group']/class[@name='ECRemoveMemberMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.im.group']/class[@name='ECReplyInviteGroupMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.im.group']/class[@name='ECReplyJoinGroupMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting']/class[@name='ECVideoMeetingMember']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting']/class[@name='ECVoiceMeetingMember']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.intercom']/class[@name='ECInterPhoneControlMicMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.intercom']/class[@name='ECInterPhoneExitMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.intercom']/class[@name='ECInterPhoneInviteMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.intercom']/class[@name='ECInterPhoneJoinMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.intercom']/class[@name='ECInterPhoneMeetingMember']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.intercom']/class[@name='ECInterPhoneMeetingMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.intercom']/class[@name='ECInterPhoneOverMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.intercom']/class[@name='ECInterPhoneReleaseMicMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.video']/class[@name='ECVideoMeetingDeleteMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.video']/class[@name='ECVideoMeetingExitMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.video']/class[@name='ECVideoMeetingJoinMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.video']/class[@name='ECVideoMeetingMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.video']/class[@name='ECVideoMeetingRejectMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.video']/class[@name='ECVideoMeetingRemoveMemberMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.video']/class[@name='ECVideoMeetingSwitchMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.video']/class[@name='ECVideoMeetingVideoFrameActionMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.voice']/class[@name='ECVoiceMeetingDeleteMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.voice']/class[@name='ECVoiceMeetingExitMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.voice']/class[@name='ECVoiceMeetingJoinMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.voice']/class[@name='ECVoiceMeetingMemberForbidOpt']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.voice']/class[@name='ECVoiceMeetingMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.voice']/class[@name='ECVoiceMeetingRejectMsg']/field[@name='CREATOR']" />
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.meeting.voice']/class[@name='ECVoiceMeetingRemoveMemberMsg']/field[@name='CREATOR']" />
+</metadata>

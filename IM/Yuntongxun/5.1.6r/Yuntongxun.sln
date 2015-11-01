@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yuntongxun.iOS", "Yuntongxun.iOS\Yuntongxun.iOS.csproj", "{92E2AAD5-353B-472E-9E1A-7E083B94F598}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yuntongxun.Android", "Yuntongxun.Android\Yuntongxun.Android.csproj", "{41F843D7-50E4-4223-9201-BF0B5EB85C91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{92E2AAD5-353B-472E-9E1A-7E083B94F598}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92E2AAD5-353B-472E-9E1A-7E083B94F598}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92E2AAD5-353B-472E-9E1A-7E083B94F598}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41F843D7-50E4-4223-9201-BF0B5EB85C91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41F843D7-50E4-4223-9201-BF0B5EB85C91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41F843D7-50E4-4223-9201-BF0B5EB85C91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41F843D7-50E4-4223-9201-BF0B5EB85C91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
