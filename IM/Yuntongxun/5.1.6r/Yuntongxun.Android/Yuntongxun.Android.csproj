@@ -43,7 +43,7 @@
   <ItemGroup>
     <None Include="Jars\AboutJars.txt" />
     <None Include="Additions\AboutAdditions.txt" />
-    <None Include="Libs\armeabi\libserphone.so" />
+    <EmbeddedNativeLibrary Include="Libs\armeabi\libserphone.so" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
