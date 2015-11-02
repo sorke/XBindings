@@ -1,0 +1,106 @@
+<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+  <remove-node path="/api/package[@name='javax.sdp']" />
+  <remove-node path="/api/package[@name='com.novell.sasl.client']" />
+  <remove-node path="/api/package[@name='com.xonami.javaBells']" />
+  <remove-node path="/api/package[@name='de.measite.smack']" />
+  <remove-node path="/api/package[@name='ch.imvs.sdes4j']"/>
+  <remove-node path="/api/package[@name='org.slf4j']"/>
+  <remove-node path="/api/package[@name='org.slf4j.spi']" />
+  <remove-node path="/api/package[@name='ch.imvs.sdes4j.srtp']"/>
+  <remove-node path="/api/package[@name='gov.nist.core']" />
+  <remove-node path="/api/package[@name='net.java.sip.communicator.impl.protocol.jabber.extensions']" />
+  <remove-node path="/api/package[@name='net.java.sip.communicator.impl.protocol.jabber.extensions.jingle']"/>
+  <remove-node path="/api/package[@name='org.jivesoftware.smack.util']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smack.util.collections']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smackx.packet']" />
+  <remove-node path="/api/package[@name='org.apache.qpid.management.common.sasl']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smack.util.dns']" />
+  <remove-node path="/api/package[@name='org.slf4j.helpers']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smackx.ping.provider']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smackx']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smackx.provider']" />
+  <remove-node path="/api/package[@name='org.apache.harmony.javax.security.auth']" />
+  <remove-node path="/api/package[@name='gov.nist.javax.sdp.fields']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smack.provider']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smack']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smackx.entitycaps.provider']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smackx.forward']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smackx.receipts']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smackx.muc']" />
+  <remove-node path="/api/package[@name='internal.org.apache.http.entity.mime.content']"/>
+  <remove-node path="/api/package[@name='internal.org.apache.http.entity.mime']" />
+  <remove-node path="/api/package[@name='org.apache.harmony.javax.security.auth.callback']" />
+  <remove-node path="/api/package[@name='org.apache.harmony.javax.security.auth.login']" />
+  <remove-node path="/api/package[@name='org.apache.harmony.javax.security.sasl']" />
+  <remove-node path="/api/package[@name='org.bitlet.weupnp']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smack.compression']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smack.debugger']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smack.filter']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smack.packet']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smack.parsing']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smack.proxy']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smack.sasl']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smackx.entitycaps.cache']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smackx.ping']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smackx.entitycaps']" />
+  <remove-node path="/api/package[@name='org.jivesoftware.smackx.entitycaps.packet']" />
+  
+  <remove-node path="/api/package[@name='com.easemob.chat.core']/class[@name='EMInternalConfigManager']"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMCursorResult']"/>
+  <remove-node path="/api/package[@name='com.easemob.util']/class[@name='FileUtils']" />
+
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMMultiUserChatRoomModelBase']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMMultiUserChatRoomModelBase']/field[@name='affiliationsCount']" name="managedName">AffiliationsCountField</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMMultiUserChatRoomModelBase']/field[@name='description']" name="managedName">DescriptionField</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMMultiUserChatRoomModelBase']/field[@name='owner']" name="managedName">OwnerField</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMMultiUserChatRoomModelBase']/field[@name='members']" name="managedName">MembersField</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMMultiUserChatRoomModelBase']/field[@name='lastModifiedTime']" name="managedName">lastModifiedTimeField</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMMultiUserChatRoomModelBase']/field[@name='maxUsers']" name="managedName">MaxUsersField</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMMultiUserChatRoomModelBase']/field[@name='isMsgBlocked']" name="managedName">IsMsgBlockedField</attr>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='getMembers' and count(parameter)=0]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='setMembers' and count(parameter)=1 and parameter[1][@type='java.util.List']]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMGroup']/method[@name='getMembers' and count(parameter)=0]" />
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMGroup']/method[@name='setMembers' and count(parameter)=1 and parameter[1][@type='java.util.List']]" />
+  
+  <!--<remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='getName' and count(parameter)=0]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='setName' and count(parameter)=1 and parameter[1][@type='java.lang.String']]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='getAffiliationsCount' and count(parameter)=0]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='setAffiliationsCount' and count(parameter)=1 and parameter[1][@type='int']]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='getDescription' and count(parameter)=0]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='setDescription' and count(parameter)=1 and parameter[1][@type='java.lang.String']]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='getOwner' and count(parameter)=0]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='setOwner' and count(parameter)=1 and parameter[1][@type='java.lang.String']]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='getLastModifiedTime' and count(parameter)=0]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='setLastModifiedTime' and count(parameter)=1 and parameter[1][@type='long']]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='getMaxUsers' and count(parameter)=0]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='setMaxUsers' and count(parameter)=1 and parameter[1][@type='int']]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='getMsgBlocked' and count(parameter)=0]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='setMsgBlocked' and count(parameter)=1 and parameter[1][@type='boolean']]"/>
+  <remove-node path="/api/package[@name='com.easemob.chat']/class[@name='EMChatRoom']/method[@name='isMsgBlocked' and count(parameter)=0]" />-->
+  
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMContact']/field[@name='eid']" name="managedName">EidField</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMContact']/field[@name='username']" name="managedName">UsernameField</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMContact']/field[@name='nick']" name="managedName">NickField</attr>
+
+  <attr path="/api/package[@name='com.easemob']/class[@name='EMChangeEventData']/field[@name='oldValue']" name="managedName">OldValueField</attr>
+  <attr path="/api/package[@name='com.easemob']/class[@name='EMChangeEventData']/field[@name='newValue']" name="managedName">NewValueField</attr>
+
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMMessage.Direct']" name="managedName">EMMessage.DirectEnum</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMMessage.Status']" name="managedName">EMMessage.StatusEnum</attr>
+
+  <attr path="/api/package[@name='com.easemob']/interface[@name='EMConnectionListener']/method[@name='onConnected']" name="managedName">EMConnected</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMChatManager']/method[@name='addConnectionListener' and count(parameter)=1 and parameter[1][@type='com.easemob.EMConnectionListener']]" name="managedName">AddEMConnectionListener</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/interface[@name='ConnectionListener']/method[@name='onConnected']" name="managedName">ChatConnected</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMChatManager']/method[@name='addConnectionListener' and count(parameter)=1 and parameter[1][@type='com.easemob.chat.ConnectionListener']]" name="managedName">AddChatConnectionListener</attr>
+
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMMessage']/method[@name='getType' and count(parameter)=0]" name="managedName">GetMessageType</attr>
+  <attr path="/api/package[@name='com.easemob.chat']/class[@name='EMMessage']/method[@name='setType' and count(parameter)=1 and parameter[1][@type='com.easemob.chat.EMMessage.Type']]" name="managedName">SetMessageType</attr>
+
+</metadata>
