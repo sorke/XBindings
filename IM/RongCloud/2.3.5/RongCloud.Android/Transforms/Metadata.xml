@@ -1,0 +1,37 @@
+<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+  <attr path="/api/package[@name='io.rong.imlib.statistics']/class[@name='Event']" name="visibility">public</attr>
+  <attr path="/api/package[@name='io.rong.imlib.statistics']/class[@name='DeviceId']/method[@name='getType' and count(parameter)=0]" name="managedName">GetDeviceIdType</attr>
+  <attr path="/api/package[@name='io.rong.imlib.model']/class[@name='MessageContent.MessageHandler.DefaultMessageHandler']/method[@name='afterDecodeMessage' and count(parameter)=2 and parameter[1][@type='io.rong.imlib.model.Message'] and parameter[2][@type='io.rong.imlib.model.MessageContent']]/parameter[2]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='io.rong.imlib.model']/class[@name='MessageContent.MessageHandler.DefaultMessageHandler']/method[@name='beforeEncodeMessage' and count(parameter)=2 and parameter[1][@type='io.rong.imlib.model.Message'] and parameter[2][@type='io.rong.imlib.model.MessageContent']]/parameter[2]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='io.rong.message']/class[@name='ImageMessageHandler']/method[@name='afterDecodeMessage' and count(parameter)=2 and parameter[1][@type='io.rong.imlib.model.Message'] and parameter[2][@type='io.rong.message.ImageMessage']]/parameter[2]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='io.rong.message']/class[@name='ImageMessageHandler']/method[@name='beforeEncodeMessage' and count(parameter)=2 and parameter[1][@type='io.rong.imlib.model.Message'] and parameter[2][@type='io.rong.message.ImageMessage']]/parameter[2]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='io.rong.message']/class[@name='LocationMessageHandler']/method[@name='afterDecodeMessage' and count(parameter)=2 and parameter[1][@type='io.rong.imlib.model.Message'] and parameter[2][@type='io.rong.message.LocationMessage']]/parameter[2]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='io.rong.message']/class[@name='LocationMessageHandler']/method[@name='beforeEncodeMessage' and count(parameter)=2 and parameter[1][@type='io.rong.imlib.model.Message'] and parameter[2][@type='io.rong.message.LocationMessage']]/parameter[2]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='io.rong.message']/class[@name='VoiceMessageHandler']/method[@name='afterDecodeMessage' and count(parameter)=2 and parameter[1][@type='io.rong.imlib.model.Message'] and parameter[2][@type='io.rong.message.VoiceMessage']]/parameter[2]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='io.rong.message']/class[@name='VoiceMessageHandler']/method[@name='beforeEncodeMessage' and count(parameter)=2 and parameter[1][@type='io.rong.imlib.model.Message'] and parameter[2][@type='io.rong.message.VoiceMessage']]/parameter[2]" name="managedType">Java.Lang.Object</attr>
+
+  <attr path="/api/package[@name='io.rong.imlib']/interface[@name='NativeObject.AccountInfoListener']/method[@name='OnError' and count(parameter)=1 and parameter[1][@type='int']]" name="managedName">OnAccountInfoError</attr>
+  <attr path="/api/package[@name='io.rong.imlib']/interface[@name='NativeObject.AccountInfoListener']/method[@name='onReceived' and count(parameter)=1 and parameter[1][@type='io.rong.imlib.NativeObject.AccountInfo[]']]" name="managedName">OnAccountInfoReceived</attr>
+  <attr path="/api/package[@name='io.rong.imlib']/interface[@name='NativeObject.DiscussionInfoListener']/method[@name='OnError' and count(parameter)=1 and parameter[1][@type='int']]" name="managedName">OnDiscussionInfoError</attr>
+  <attr path="/api/package[@name='io.rong.imlib']/interface[@name='NativeObject.DiscussionInfoListener']/method[@name='onReceived' and count(parameter)=1 and parameter[1][@type='io.rong.imlib.NativeObject.DiscussionInfo']]" name="managedName">OnDiscussionInfoReceived</attr>
+  <attr path="/api/package[@name='io.rong.imlib']/interface[@name='NativeObject.GetUserDataListener']/method[@name='OnError' and count(parameter)=1 and parameter[1][@type='int']]" name="managedName">OnGetUserDataError</attr>
+  <attr path="/api/package[@name='io.rong.imlib']/interface[@name='NativeObject.GetUserDataListener']/method[@name='OnSuccess' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedName">OnGetUserDataSuccess</attr>
+  <attr path="/api/package[@name='io.rong.imlib']/interface[@name='NativeObject.HistoryMessageListener']/method[@name='onError' and count(parameter)=1 and parameter[1][@type='int']]" name="managedName">OnHistoryMessageError</attr>
+  <attr path="/api/package[@name='io.rong.imlib']/interface[@name='NativeObject.HistoryMessageListener']/method[@name='onReceived' and count(parameter)=1 and parameter[1][@type='io.rong.imlib.NativeObject.Message[]']]" name="managedName">OnHistoryMessageReceived</attr>
+  <attr path="/api/package[@name='io.rong.imlib']/interface[@name='NativeObject.PushSettingListener']/method[@name='OnError' and count(parameter)=1 and parameter[1][@type='int']]" name="managedName">OnPushSettingError</attr>
+  <attr path="/api/package[@name='io.rong.imlib']/interface[@name='NativeObject.PushSettingListener']/method[@name='OnSuccess' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int']]" name="managedName">OnPushSettingSuccess</attr>
+  <attr path="/api/package[@name='io.rong.imlib']/interface[@name='NativeObject.SetBlacklistListener']/method[@name='OnError' and count(parameter)=1 and parameter[1][@type='int']]" name="managedName">OnSetBlacklistError</attr>
+  <attr path="/api/package[@name='io.rong.imlib']/interface[@name='NativeObject.SetBlacklistListener']/method[@name='OnSuccess' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedName">OnSetBlacklistSuccess</attr>
+  <attr path="/api/package[@name='io.rong.imlib']/interface[@name='NativeObject.UserInfoOutputListener']/method[@name='OnError' and count(parameter)=1 and parameter[1][@type='int']]" name="managedName">OnUserInfoOutputError</attr>
+
+  <remove-node path="/api/package[@name='io.rong.imlib']/class[@name='RongIMClient.GetNotificationQuietHoursCallback']/method[@name='onError' and count(parameter)=1 and parameter[1][@type='io.rong.imlib.RongIMClient.ErrorCode']]" />
+  <remove-node path="/api/package[@name='io.rong.imlib.location.stateMachine']/interface[@name='IState']/field[@name='HANDLED']"/>
+  <remove-node path="/api/package[@name='io.rong.imlib.location.stateMachine']/interface[@name='IState']/field[@name='NOT_HANDLED']" />
+</metadata> 
