@@ -13,9 +13,16 @@
   <attr path="/api/package[@name='com.yuntongxun.ecsdk.meeting.intercom']/class[@name='ECInterPhoneMeetingMember.Online']" name="managedName">OnlineStatus</attr>
   <attr path="/api/package[@name='com.yuntongxun.ecsdk.meeting']/class[@name='ECMeetingMember']/method[@name='getType' and count(parameter)=0]" name="managedName">GetMeetingMemberType</attr>
   <attr path="/api/package[@name='com.yuntongxun.ecsdk.meeting']/class[@name='ECMeetingMember.Type']" name="managedName">MeetingMemberType</attr>
-  
-  
-  
+
+  <!--<attr path="/api/package[@name='com.yuntongxun.ecsdk.core']/interface[@name='bl']" name="visibility">public</attr>-->
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk.core']/interface[@name='bl']" name="obfuscated">false</attr>
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk.core.b.a']/class[@name='b']" name="obfuscated">false</attr>
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk.core.b.b']/class[@name='a']" name="obfuscated">false</attr>
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk.core.b.a.b']/class[@name='a']" name="obfuscated">false</attr>
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk.core']" name="obfuscated">false</attr>
+
+  <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.core.b.b']/class[@name='a']/method[@name='finalize' and count(parameter)=0]" />
+
   <!-- 消除警告-->
   <attr path="/api/package[@name='com.yuntongxun.ecsdk']/class[@name='ECMessage']/method[@name='clone' and count(parameter)=0]" name="managedName">JavaClone</attr>
   <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.im']/class[@name='ECVoiceMessageBody']/field[@name='CREATOR']" />
