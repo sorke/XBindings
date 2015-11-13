@@ -20,6 +20,7 @@
   <attr path="/api/package[@name='com.yuntongxun.ecsdk.core.b.b']/class[@name='a']" name="obfuscated">false</attr>
   <attr path="/api/package[@name='com.yuntongxun.ecsdk.core.b.a.b']/class[@name='a']" name="obfuscated">false</attr>
   <attr path="/api/package[@name='com.yuntongxun.ecsdk.core']" name="obfuscated">false</attr>
+  <attr path="/api/package[@name='com.yuntongxun.ecsdk.core.jni']/class[@name='NativeInterface']/method[@name='a' and count(parameter)=0]" name="obfuscated">false</attr>
 
   <remove-node path="/api/package[@name='com.yuntongxun.ecsdk.core.b.b']/class[@name='a']/method[@name='finalize' and count(parameter)=0]" />
 
